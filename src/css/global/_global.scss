@@ -1,0 +1,129 @@
+
+/* globales */
+html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+}
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+body {
+    font-size: 1.6rem;
+}
+
+.contenedor {
+    max-width: 120rem;
+    width: 95%;
+    margin: 0 auto;
+}
+/*Sistema de tamaños*/
+
+h1 {
+    font-size: 3.5rem;
+    @include adaptar( 768px ) {
+        font-size: 5.2rem;
+
+    }
+
+}
+
+h2 {
+    font-size: 2.5rem;
+    @include adaptar( 768px ) {
+        font-size: 3rem;
+
+    }
+}
+
+h3 {
+    font-size: 2rem;
+    @include adaptar( 768px ) {
+        font-size: 2.5rem;
+
+    }
+}
+p{
+    font-size: 1.8rem;
+    @include adaptar( 768px ){
+        font-size: 2rem;
+
+    }
+}
+
+/*helpers globales*/
+.label-negritas {
+    font-weight: bold;
+}
+
+.padings-form{
+    
+    @include adaptar( 768px ) {
+        padding-left: 20%;
+        padding-right: 20%;
+
+    }
+}
+
+.contenedor-enlace{
+    display: grid;
+    grid-template-columns: 80% 20%;
+  }
+
+.contenedor-form {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+
+    @include adaptar(765px) {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+
+        .q-input {
+            min-width: 24rem;
+        }
+    }
+}
+
+.contenedor-perfil {
+    position: relative;
+    background-image: url('../assets/banner.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    width: 100%;
+    color: white;
+}
+
+.contenedor-formulario{
+    display: grid;
+
+    @include adaptar(760px){
+        background-color: white;
+        grid-template-columns: repeat(2,1fr);
+
+        .contenedor-derecho{
+            padding-right: 1rem;
+        }
+
+        .contenedor-izquierdo{
+            padding-left: 1rem;
+        }
+    }
+    
+}
+
+.contenedor-goce-primas{
+    display: grid;
+
+    @include adaptar(760px){
+        grid-template-columns: 40% 60%;
+        .titulo-informacion-solicitud{
+            padding-top: 0.5rem;
+        }
+    }
+
+    .contenedor-radio-solicitud{
+        display: flex;
+        flex-direction: column;
+    }
+}

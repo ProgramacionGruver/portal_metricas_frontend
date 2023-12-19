@@ -1,0 +1,6 @@
+@mixin adaptar( $tamanio ) {
+    @media ( min-width:$tamanio ) {
+        @content;   
+    }
+}
+

@@ -1,0 +1,49 @@
+.contenedor-dashboard{
+  padding: 0 4rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .contenedor-contactos{
+    display: grid;
+    padding: 0 10%;
+    gap: 4rem;
+    grid-template-columns: repeat(3, 10fr);
+
+    h4{
+      color: #243fd8;
+      font-size: medium;
+    }
+
+    p{
+      font-size: medium;
+    }
+    
+
+  }
+}
+
+.tarjetas-dashboard {
+
+  .card-informacion {
+    max-width: 35rem;
+
+    .contenedor-avatar {
+      display: flex;
+      font-size: 2.3rem;
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+      align-items: center;
+    }
+
+    .informacion {
+      color: $primary;
+      font-size: 4rem;
+      word-wrap: break-word;
+      padding-top: 3rem;
+      padding-bottom: 1rem;
+    }
+  }
+}
+
