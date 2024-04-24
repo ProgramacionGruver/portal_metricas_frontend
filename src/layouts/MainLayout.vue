@@ -42,7 +42,9 @@ import { useRouter } from 'vue-router'
 import NavBar from 'src/components/NavBar.vue'
 
 import { useAutenticacionStore } from 'src/stores/autenticaciones'
-
+import { usePowerBiStore } from 'src/stores/powerbi'
+import { useModulosStore } from 'src/stores/permisosModulos'
+import { ID_PORTAL } from 'src/constant/servidor'
 
 export default {
   components: {
@@ -52,7 +54,13 @@ export default {
     const useUsuario = useAutenticacionStore()
     const { cerrarSesion } = useUsuario
     const { usuarioAutenticado } = storeToRefs(useUsuario)
-    
+
+    const usePowerBi = usePowerBiStore()
+    const { obtenerAccessToken } = usePowerBi
+
+    const useModulos = useModulosStore()
+    const { obtenerUsuariosModulo } = useModulos
+
     const leftDrawerOpen = ref(false)
     const router = useRouter()
 
@@ -60,7 +68,10 @@ export default {
       router.push('/')
       cerrarSesion()
     }
-    onMounted(() => {
+    onMounted(async () => {
+      await obtenerAccessToken(1)
+      await obtenerAccessToken(2)
+      await obtenerUsuariosModulo()
     })
 
     const calcularURLFoto = (numeroEmpleado) => {

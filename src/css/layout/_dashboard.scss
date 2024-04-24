@@ -1,49 +1,131 @@
 .contenedor-dashboard{
-  padding: 0 4rem;
+  padding: 4rem;
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  .contenedor-contactos{
+  .contenedor-banner-fecha{
     display: grid;
-    padding: 0 10%;
-    gap: 4rem;
-    grid-template-columns: repeat(3, 10fr);
 
-    h4{
-      color: #243fd8;
-      font-size: medium;
+    @include adaptar(768px) {
+       grid-template-columns: 65% 35%;
     }
 
-    p{
-      font-size: medium;
+    .card-banner {
+      background-color: #1052A0;
     }
-    
 
-  }
-}
-
-.tarjetas-dashboard {
-
-  .card-informacion {
-    max-width: 35rem;
-
-    .contenedor-avatar {
+    .contenedor-date{
+      padding-left: 3rem;
       display: flex;
-      font-size: 2.3rem;
-      padding-top: 1rem;
-      padding-bottom: 1rem;
-      align-items: center;
+      justify-content: center;
     }
 
-    .informacion {
-      color: $primary;
-      font-size: 4rem;
-      word-wrap: break-word;
+  }
+
+  .contenedor-requisicones-ingresos{
+    display: grid;
+
+    @include adaptar(768px) {
+      grid-template-columns: 65% 35%;
       padding-top: 3rem;
-      padding-bottom: 1rem;
+    }
+
+    .contenedor-resumen-requisiciones{
+      display: flex;
+      flex-direction: column;
+
+      .card-resumen{
+        display: grid;
+        gap: 3rem;
+        @include adaptar(768px) {
+          grid-template-columns: repeat(2, 1fr);
+          padding-bottom: 3rem;
+
+        }
+      }
+    }
+
+    .card-ingresos{
+      padding-left: 3rem;
+    }
+  }
+
+}
+
+.avatar {
+  background-color: $primary;
+  font-size: 4rem;
+}
+.cards-dashboard {
+    display: grid;
+    gap: 1.5rem;
+    @include adaptar(768px) {
+       grid-template-columns: repeat( 3,1fr );
+
+    }
+
+    .contenido-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      h3 {
+        text-align: center;
+      }
+      span {
+        font-size: 4rem;
+      }
+      p {
+        font-size: 2.5rem;
+      }
+    }
+}
+
+.cards-historial {
+  display: grid;
+  gap: 1.5rem;
+  @include adaptar(768px) {
+     grid-template-columns: repeat( 2,1fr );
+  }
+
+  .contenido-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    h3 {
+      text-align: center;
+    }
+    span {
+      font-size: 4rem;
+    }
+    p {
+      font-size: 2.5rem;
     }
   }
 }
 
+.cards-candidatos {
+  display: grid;
+  margin-top: 5rem;
+  gap: 35rem;
+  @include adaptar(768px) {
+     grid-template-columns: repeat( 2,1fr );
+  }
+  .contenido-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    h3 {
+      text-align: center;
+    }
+    span {
+      font-size: 4rem;
+    }
+    p {
+      font-size: 2.5rem;
+    }
+  }
+}

@@ -86,7 +86,6 @@ export default {
 
     const login = async () => {
       if (await formulario.value.validate()) {
-        // console.log(usuarioObj)
         await iniciarSesion(usuarioObj, router)
       }
     }

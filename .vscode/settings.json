@@ -1,15 +1,13 @@
 {
   "editor.bracketPairColorization.enabled": true,
   "editor.guides.bracketPairs": true,
-  "editor.formatOnSave": true,
+  "editor.formatOnSave": false,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.codeActionsOnSave": [
-    "source.fixAll.eslint"
-  ],
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "vue"
-  ]
+  "editor.codeActionsOnSave": ["source.fixAll.eslint"],
+  "eslint.validate": ["javascript", "javascriptreact", "typescript", "vue"],
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#510C56",
+    "titleBar.activeBackground": "#711179",
+    "titleBar.activeForeground": "#FEFCFF"
+  }
 }

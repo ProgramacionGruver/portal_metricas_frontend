@@ -1,2 +1,1 @@
-export const ID_PORTAL = 16
-
+export const ID_PORTAL = 25

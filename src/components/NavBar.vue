@@ -1,44 +1,71 @@
 <template>
-  <q-list>
-    <div class="q-px-md q-py-md text-h4">
-        Dashboard
-      </div>
-      <q-separator />
-    <template v-for="(menuItem, index) in menulist" :key="index">
-      <q-item
-        clickable
-        v-ripple
-        :to="{ name: menuItem.name }"
-        exact
-        active-class="my-menu-link"
-      >
-        <q-item-section avatar>
-          <q-icon :name="menuItem.icono" />
-        </q-item-section>
+  <q-scroll-area
+    :thumb-style="{
+      right: '2px',
+      backgroundColor: 'primary',
+      borderRadius: '5px',
+      width: '5px',
+      opacity: 0.5
+    }"
+    :bar-style="{
+      right: '2px',
+      backgroundColor: 'primary',
+      borderRadius: '9px',
+      width: '9px',
+      opacity: 0.2
+    }"
+    style="height: 80%; max-width: 100%;"
+  >
+    <q-list>
+      <template v-for="(menuItem, index) in menulist" :key="index">
+        <q-expansion-item
+          v-if="menuItem.children"
+          :label="menuItem.label"
+          :default-opened="false"
+        >
+          <template v-for="(departamento, index) in menuItem.children" :key="index">
+            <q-expansion-item :label="departamento.label" :default-opened="false" class="q-ml-lg">
+              <template v-for="(children, index) in departamento.children" :key="index">
+                <q-item
+                clickable
+                v-ripple
+                :to="{ name: children.name }"
+                exact
+                active-class="my-menu-link"
+                class="q-ml-xl"
+                :disable="!habilitarNavegacionPortal"
+                >
+                  <q-item-section avatar>
+                    <q-icon :name="children.icono" />
+                  </q-item-section>
+                  <q-item-section>
+                      {{ children.label }}
+                  </q-item-section>
+                </q-item>
+              </template>
+            </q-expansion-item>
+          </template>
+        </q-expansion-item>
 
-        <q-item-section>
-          {{ menuItem.label }}
-        </q-item-section>
-      </q-item>
-
-     <div v-if="menulist[index+1]?.name === 'etiquetas'">
-          <div class="q-px-md q-py-md q-mt-md text-h4">
-            Catalogo
-          </div>
-          <q-separator />
-     </div>
-
-    </template>
-  </q-list>
+        <q-item v-else clickable v-ripple :to="{ name: menuItem.name }" exact active-class="my-menu-link">
+          <q-item-section avatar>
+            <q-icon :name="menuItem.icono" />
+          </q-item-section>
+          <q-item-section>
+            {{ menuItem.label }}
+          </q-item-section>
+        </q-item>
+      </template>
+    </q-list>
+  </q-scroll-area>
 </template>
 
 <script setup>
 import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia'
-
 import { useAutenticacionStore } from 'src/stores/autenticaciones'
-import { usuariosEditan } from 'src/constant/constant'
+import { usePowerBiStore } from 'src/stores/powerbi'
 
 const menulist = ref([])
 const router = useRouter()
@@ -46,16 +73,19 @@ const router = useRouter()
 const useUsuario = useAutenticacionStore()
 const { usuarioAutenticado } = storeToRefs(useUsuario)
 
-onMounted(() => {
-menulist.value = router.options.routes
-  .find((r) => {
-    return r.name === 'principal'
-  })
-  .children
-  
-if (router.currentRoute.value.name === 'principal') {
-  router.replace({ name: 'dashboard' })
-}
+const usePowerBi = usePowerBiStore()
+const { habilitarNavegacionPortal } = storeToRefs(usePowerBi)
+
+onMounted(async () => {
+  menulist.value = router.options.routes
+    .find((r) => {
+      return r.name === 'principal'
+    })
+    .children
+
+  if (router.currentRoute.value.name === 'principal') {
+    router.replace({ name: 'dashboard' })
+  }
 })
 </script>
 
