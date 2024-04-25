@@ -76,8 +76,10 @@ module.exports = configure(function (/* ctx */) {
       // polyfillModulePreload: true,
       // distDir
 
-      // extendViteConf (viteConf) {},
-      // viteVuePluginOptions: {},
+
+      extendViteConf (viteConf, { isServer, isClient }) {
+        viteConf.base = "portal_metricas";
+      },
 
 
       // vitePlugins: [
