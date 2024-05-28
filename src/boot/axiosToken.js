@@ -7,8 +7,8 @@ import axios from 'axios'
 // good idea to move this instance creation inside of the
 // "export default () => {}" function below (which runs individually
 // for each client)
-// const apiToken = axios.create({ baseURL: 'http://localhost:4001/proxy' })
-const apiToken = axios.create({ baseURL: 'https://backend.gruver.com.mx/proxy' })
+// const apiToken = axios.create({ baseURL: 'http://localhost:4001/sistemas/api/proxy' })
+const apiToken = axios.create({ baseURL: 'https://backend.gruver.com.mx/sistemas/api/proxy' })
 
 export default boot(({ app }) => {
   // for use inside Vue files (Options API) through this.$axios and this.$api
