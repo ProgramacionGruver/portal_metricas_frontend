@@ -15,7 +15,10 @@
     </q-btn>
     </div>
     <q-separator color="primary" class="q-my-md" inset />
-    <div ref="powerBiContainer" style="height: 90vh;" class="q-ma-md"></div>
+    <div class="contenedorMetrica">
+      <div class="superposicionFramePb"></div>
+      <div ref="powerBiContainer" style="height: 90vh;"></div>
+    </div>
   </q-layout>
 </template>
 
@@ -91,3 +94,15 @@ export default {
 }
 
 </script>
+
+<style>
+.contenedorMetrica {
+  position: relative;
+}
+
+.superposicionFramePb {
+  background-color: white !important;
+  padding: 20px 90% !important;
+  position: absolute;
+}
+</style>
