@@ -1,7 +1,7 @@
 <template>
   <q-layout class="q-pa-md">
     <div class="q-ma-md" style="display: flex; justify-content: space-between; align-items: center;">
-      <h2>Reporte de dirección GRUVER</h2>
+      <h2>Reporte de dirección</h2>
       <q-btn
         round
         color="primary"
@@ -55,18 +55,11 @@ export default {
         id: objReporte.idMetricaPB,
         permissions: pbi.models.Permissions.All,
         settings: {
-          panes: {
-            filters: {
-                visible: false
-              },
-            pageNavigation: {
-                visible: true
-              }
-            },
-          bars: {
-            statusbar: {
-                visible: false
-            }
+          filterPaneEnabled: false,
+          navContentPaneEnabled: true,
+          layoutType: pbi.models.LayoutType.Custom,
+          customLayout: {
+            displayOption: pbi.models.DisplayOption.FitToWidth
           }
         }
       }

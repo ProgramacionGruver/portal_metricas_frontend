@@ -15,7 +15,7 @@
     </q-btn>
     </div>
     <q-separator color="primary" class="q-my-md" inset />
-    <div ref="powerBiContainer" style="height: 90vh;" class="q-ma-md"></div>
+    <div ref="powerBiContainer" id="divIncrustrado" style="height: 90vh;" class="q-ma-md"></div>
   </q-layout>
 </template>
 
@@ -55,18 +55,11 @@ export default {
         id: objReporte.idMetricaPB,
         permissions: pbi.models.Permissions.All,
         settings: {
-          panes: {
-            filters: {
-                visible: false
-              },
-            pageNavigation: {
-                visible: true
-              }
-            },
-          bars: {
-            statusbar: {
-                visible: false
-            }
+          filterPaneEnabled: false,
+          navContentPaneEnabled: true,
+          layoutType: pbi.models.LayoutType.Custom,
+          customLayout: {
+            displayOption: pbi.models.DisplayOption.FitToWidth
           }
         }
       }
@@ -96,5 +89,10 @@ export default {
     }
   }
 }
-
 </script>
+
+<style>
+#divIncrustrado > iframe > html > body > #pbiAppPlaceHolder > report-embed > notification-bar  {
+  display: none !important;
+}
+</style>

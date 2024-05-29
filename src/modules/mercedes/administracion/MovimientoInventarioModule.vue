@@ -55,18 +55,11 @@ export default {
         id: objReporte.idMetricaPB,
         permissions: pbi.models.Permissions.All,
         settings: {
-          panes: {
-            filters: {
-                visible: false
-              },
-            pageNavigation: {
-                visible: true
-              }
-            },
-          bars: {
-            statusbar: {
-                visible: false
-            }
+          filterPaneEnabled: false,
+          navContentPaneEnabled: true,
+          layoutType: pbi.models.LayoutType.Custom,
+          customLayout: {
+            displayOption: pbi.models.DisplayOption.FitToWidth
           }
         }
       }
