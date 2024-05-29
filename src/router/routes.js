@@ -12,7 +12,7 @@ const routes = [
     component: () => import('layouts/MainLayout.vue'),
     children: [
       { path: '', icono: 'dashboard', label: 'Inicio', name: 'dashboard', component: () => import('src/modules/dashboard/DashBoard.vue') },
-      // { path: 'panelControl', icono: 'admin_panel_settings', label: 'Panel de control', name: 'panelControl', component: () => import('src/modules/control/PanelControlModule.vue') },
+      { path: 'panelControl', icono: 'admin_panel_settings', label: 'Panel de control', name: 'panelControl', component: () => import('src/modules/control/PanelControlModule.vue') },
       {
         path: 'chevrolet',
         label: 'Gomsa Automotriz',
@@ -168,21 +168,22 @@ const routes = [
             name: 'comprasMB',
             children: [
               // { path: 'estadoResultados', icono: 'trending_up', label: 'Estado de Resultados Camiones', name: 'estadoResultadosMB', component: () => import('src/modules/mercedes/administracion/EstadoResultadosModule.vue') },
-              // { path: 'ventaProducto', icono: 'shopping_bag', label: 'Venta de Producto', name: 'ventaProductoMB', component: () => import('src/modules/mercedes/administracion/VentaProductosModule.vue') },
               { path: 'movimientoInventario', icono: 'inventory', label: 'Movimiento de Inventario', name: 'movimientoInventarioMB', component: () => import('src/modules/mercedes/administracion/MovimientoInventarioModule.vue') },
+              // { path: 'ventaProducto', icono: 'shopping_bag', label: 'Venta de Producto', name: 'ventaProductoMB', component: () => import('src/modules/mercedes/administracion/VentaProductosModule.vue') },
               // { path: 'analiticaGastos', icono: 'payments', label: 'Analítica de Gastos', name: 'analiticaGastosMB', component: () => import('src/modules/mercedes/administracion/AnaliticaGastosModule.vue') },
               // { path: 'CRM', icono: 'work', label: 'CRM', name: 'crm', component: () => import('src/modules/mercedes/administracion/CRMModule.vue') },
               // { path: 'ventasCruzadas', icono: 'shopping_bag', label: 'Ventas Cruzadas', name: 'ventasCruzadasMB', component: () => import('src/modules/mercedes/administracion/VentasCruzadasModule.vue') }
             ]
           },
-          // {
-          //   path: 'refacciones',
-          //   label: 'Refacciones',
-          //   name: 'refaccionesMB',
-          //   children: [
-          //     { path: 'csiRefacciones', icono: 'group', label: 'CSI Refacciones', name: 'csiRefaccionesMB', component: () => import('src/modules/mercedes/refacciones/CSIRefaccionesModule.vue') }
-          //   ]
-          // },
+          {
+            path: 'refacciones',
+            label: 'Refacciones',
+            name: 'refaccionesMB',
+            children: [
+              // { path: 'csiRefacciones', icono: 'group', label: 'CSI Refacciones', name: 'csiRefaccionesMB', component: () => import('src/modules/mercedes/refacciones/CSIRefaccionesModule.vue') }
+              { path: 'ventaProducto', icono: 'shopping_bag', label: 'Venta de Producto', name: 'ventaProductoMB', component: () => import('src/modules/mercedes/administracion/VentaProductosModule.vue') },
+            ]
+          },
           {
             path: 'servicio',
             label: 'Servicio',
