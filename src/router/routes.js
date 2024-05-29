@@ -24,39 +24,39 @@ const routes = [
             name: 'administracionCH',
             children: [
               // { path: 'estadoResultados', icono: 'trending_up', label: 'Estado de Resultados', name: 'estadoResultadosCH', component: () => import('src/modules/chevrolet/administracion/EstadoResultadosModule.vue') },
-              { path: 'ventasProducto', icono: 'shopping_bag', label: 'Ventas de prodcuto', name: 'ventasProductoCH', component: () => import('src/modules/chevrolet/administracion/VentasProductosModule.vue') },
-              { path: 'comisiones', icono: 'payments', label: 'Comisiones', name: 'comisionesCH', component: () => import('src/modules/exactor/administracion/ComisionesModule.vue') },
-              { path: 'bdc', icono: 'work', label: 'BDC', name: 'bdcCH', component: () => import('src/modules/exactor/administracion/BDCModule.vue') },
+              // { path: 'ventasProducto', icono: 'shopping_bag', label: 'Ventas de prodcuto', name: 'ventasProductoCH', component: () => import('src/modules/chevrolet/administracion/VentasProductosModule.vue') },
+              // { path: 'comisiones', icono: 'payments', label: 'Comisiones', name: 'comisionesCH', component: () => import('src/modules/exactor/administracion/ComisionesModule.vue') },
+              // { path: 'bdc', icono: 'work', label: 'BDC', name: 'bdcCH', component: () => import('src/modules/exactor/administracion/BDCModule.vue') },
               { path: 'tableroRitmo', icono: 'table_rows', label: 'Tablero de Ritmo', name: 'tableroRitmoEX', component: () => import('src/modules/exactor/servicio/TableroRitmoModule.vue') },
               { path: 'reporteDireccion', icono: 'work', label: 'Reporte Dirección', name: 'reporteDireccionEX', component: () => import('src/modules/exactor/rh/ReporteDireccionModule.vue') },
             ]
           },
-          {
-            path: 'refacciones',
-            label: 'Refacciones',
-            name: 'refaccionesCH',
-            children: [
-              { path: 'csiRefacciones', icono: 'group', label: 'CSI Refacciones', name: 'csiRefaccionesCH', component: () => import('src/modules/chevrolet/refacciones/CSIRecfaccionesModule.vue') }
-            ]
-          },
-          {
-            path: 'servicio',
-            label: 'Servicio',
-            name: 'servicioCH',
-            children: [
-              { path: 'csiServicio', icono: 'group', label: 'CSI Servicio', name: 'csiServicioCH', component: () => import('src/modules/chevrolet/servicio/CSIServicioModule.vue') },
-              { path: 'ordenesServicio', icono: 'receipt_long', label: 'Ordenes de Servicio', name: 'ordenesServicioCH', component: () => import('src/modules/chevrolet/servicio/OrdenesServicioModule.vue') },
-            ]
-          },
-          {
-            path: 'unidades',
-            label: 'Unidades',
-            name: 'unidadesCH',
-            children: [
-              { path: 'inventarioUnidades', icono: 'inventory', label: 'Inventario de Unidades', name: 'inventarioUnidadesCH', component: () => import('src/modules/chevrolet/unidades/InventarioUnidadesModule.vue') },
-              { path: 'csiUnidaddes', icono: 'group', label: 'CSI Unidades', name: 'csiUnidaddesCH', component: () => import('src/modules/chevrolet/unidades/CSIUnidadesModule.vue') }
-            ]
-          }
+          // {
+          //   path: 'refacciones',
+          //   label: 'Refacciones',
+          //   name: 'refaccionesCH',
+          //   children: [
+          //     { path: 'csiRefacciones', icono: 'group', label: 'CSI Refacciones', name: 'csiRefaccionesCH', component: () => import('src/modules/chevrolet/refacciones/CSIRecfaccionesModule.vue') }
+          //   ]
+          // },
+          // {
+          //   path: 'servicio',
+          //   label: 'Servicio',
+          //   name: 'servicioCH',
+          //   children: [
+          //     { path: 'csiServicio', icono: 'group', label: 'CSI Servicio', name: 'csiServicioCH', component: () => import('src/modules/chevrolet/servicio/CSIServicioModule.vue') },
+          //     { path: 'ordenesServicio', icono: 'receipt_long', label: 'Ordenes de Servicio', name: 'ordenesServicioCH', component: () => import('src/modules/chevrolet/servicio/OrdenesServicioModule.vue') },
+          //   ]
+          // },
+          // {
+          //   path: 'unidades',
+          //   label: 'Unidades',
+          //   name: 'unidadesCH',
+          //   children: [
+          //     { path: 'inventarioUnidades', icono: 'inventory', label: 'Inventario de Unidades', name: 'inventarioUnidadesCH', component: () => import('src/modules/chevrolet/unidades/InventarioUnidadesModule.vue') },
+          //     { path: 'csiUnidaddes', icono: 'group', label: 'CSI Unidades', name: 'csiUnidaddesCH', component: () => import('src/modules/chevrolet/unidades/CSIUnidadesModule.vue') }
+          //   ]
+          // }
         ]
       },
       {
@@ -80,8 +80,8 @@ const routes = [
             children: [
               { path: 'acceoUsuarios', icono: 'group', label: 'Acceso de usuarios', name: 'acceoUsuariosEX', component: () => import('src/modules/exactor/sistemas/AccesoUsuariosModule.vue') },
               { path: 'informeTickets', icono: 'receipt_long', label: 'Informe OsTicket', name: 'informeTicketsEX', component: () => import('src/modules/exactor/sistemas/InformeOsTicketModule.vue') },
-              { path: 'inventarioHosts', icono: 'inventory', label: 'Inventario Hosts', name: 'inventarioHostsEX', component: () => import('src/modules/exactor/sistemas/InventarioHostsModule.vue') },
-              { path: 'relojCheck', icono: 'schedule', label: 'Reloj Check', name: 'relojCheckEX', component: () => import('src/modules/exactor/sistemas/RelojCheckModule.vue') },
+              // { path: 'inventarioHosts', icono: 'inventory', label: 'Inventario Hosts', name: 'inventarioHostsEX', component: () => import('src/modules/exactor/sistemas/InventarioHostsModule.vue') },
+              // { path: 'relojCheck', icono: 'schedule', label: 'Reloj Check', name: 'relojCheckEX', component: () => import('src/modules/exactor/sistemas/RelojCheckModule.vue') },
             ]
           },
           {
