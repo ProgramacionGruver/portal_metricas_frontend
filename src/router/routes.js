@@ -1,5 +1,3 @@
-import { h } from 'vue'
-
 const routes = [
   {
     path: '/',
@@ -207,6 +205,11 @@ const routes = [
         ]
       }
     ]
+  },
+  {
+    path: '/registrarse',
+    name: 'registrarse',
+    component: () => import('src/modules/registrarse/RegistarseUsuario.vue')
   },
   {
     path: '/:catchAll(.*)*',

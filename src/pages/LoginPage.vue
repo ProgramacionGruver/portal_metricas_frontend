@@ -55,8 +55,17 @@
               </template>
             </q-input>
           </div>
-          <div class="btn-login">
-            <q-btn color="primary" type="submit" label="Iniciar Sesión" />
+          <div>
+            <div class="btn-login">
+              <q-btn color="primary" type="submit" label="Iniciar Sesión" />
+              <q-btn
+                color="primary"
+                label="Registrate aquí"
+                icon="person_add"
+                @click="enviarARegistrar"
+                flat
+              />
+            </div>
           </div>
         </div>
       </q-form>
@@ -68,6 +77,7 @@ import { useAutenticacionStore } from '../stores/autenticaciones'
 import { ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { ID_PORTAL } from 'src/constant/servidor'
+import { storeToRefs } from 'pinia'
 
 export default {
   setup () {
@@ -90,11 +100,16 @@ export default {
       }
     }
 
+    const enviarARegistrar = () => {
+      router.push('/registrarse')
+    }
+
     return {
       usuarioObj,
       isPassword,
       login,
-      formulario
+      formulario,
+      enviarARegistrar
     }
   }
 }

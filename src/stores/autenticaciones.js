@@ -6,6 +6,8 @@ import { notificacion } from 'src/helpers/mensajes'
 export const useAutenticacionStore = defineStore('autenticaciones', () => {
   const usuarioAutenticado = ref(null)
   const isLogin = ref(false)
+  const mandarARegistrarse = ref(false)
+  const registroExitoso = ref(false)
 
   const iniciarSesion = async (usuario, router) => {
     try {
@@ -54,11 +56,32 @@ export const useAutenticacionStore = defineStore('autenticaciones', () => {
     }
   }
 
+  const registrarPermisoPortalMetricas = async (numero_empleado) => {
+    try {
+      const { data } = await apiUsuarios.post(`/metricasRegistro/${numero_empleado}`)
+
+      registroExitoso.value = true
+      notificacion('positive', data.message)
+    } catch (error) {
+      registroExitoso.value = false
+
+      if (error.response.status >= 400) {
+        registroExitoso.value = false
+        notificacion('warning', error.response.data.message)
+        return
+      }
+
+      notificacion('negative', error.response.data.message)
+    }
+  }
+
   return {
     iniciarSesion,
     cerrarSesion,
     autenticarUsuario,
     usuarioAutenticado,
     isLogin,
+    registrarPermisoPortalMetricas,
+    registroExitoso
   }
 })
