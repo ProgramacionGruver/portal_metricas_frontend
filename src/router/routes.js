@@ -190,7 +190,7 @@ const routes = [
               // { path: 'productividadServicio', icono: 'work', label: 'Productividad de Servicio', name: 'productividadServicioMB', component: () => import('src/modules/mercedes/servicio/ProductividadServicioModule.vue') },
               { path: 'tableroServicio', icono: 'table_rows', label: 'Tablero de Servicio', name: 'tableroServicioMB', component: () => import('src/modules/mercedes/servicio/TableroServicioModule.vue') },
               // { path: 'ordenesServicio', icono: 'receipt_long', label: 'Ordenes de Servicio', name: 'ordenesServicioMB', component: () => import('src/modules/mercedes/servicio/OrdenesServicioModule.vue') },
-              // { path: 'csiServicio', icono: 'group', label: 'CSI Servicio', name: 'csiServicioMB', component: () => import('src/modules/mercedes/servicio/CSIServicioModule.vue') }
+              { path: 'csiServicio', icono: 'group', label: 'CSI y Clientes perdidos', name: 'csiServicioMB', component: () => import('src/modules/mercedes/servicio/CSIServicioModule.vue') }
             ]
           },
           {
