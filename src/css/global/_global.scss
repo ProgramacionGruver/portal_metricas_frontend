@@ -3,6 +3,7 @@
 html {
     font-size: 62.5%;
     box-sizing: border-box;
+    overflow-x: hidden;
 }
 *, *::before, *::after {
     box-sizing: inherit;
@@ -57,7 +58,7 @@ p{
 }
 
 .padings-form{
-    
+
     @include adaptar( 768px ) {
         padding-left: 20%;
         padding-right: 20%;
@@ -109,7 +110,7 @@ p{
             padding-left: 1rem;
         }
     }
-    
+
 }
 
 .contenedor-goce-primas{
