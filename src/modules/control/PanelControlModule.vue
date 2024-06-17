@@ -194,9 +194,7 @@ export default {
     ]
 
     onMounted(async () => {
-      listaModulos.value = router.options.routes.find((r) => {
-        return r.name === 'principal'
-      }).children
+      listaModulos.value = listaModulos.value.filter((modulo) => modulo.name !== 'dashboard')
 
       modulosFiltrados.value = listaModulos.value
     })

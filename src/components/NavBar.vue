@@ -66,6 +66,7 @@ import { useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia'
 import { useAutenticacionStore } from 'src/stores/autenticaciones'
 import { usePowerBiStore } from 'src/stores/powerbi'
+import { useModulosStore } from 'src/stores/permisosModulos'
 
 const menulist = ref([])
 const router = useRouter()
@@ -76,12 +77,40 @@ const { usuarioAutenticado } = storeToRefs(useUsuario)
 const usePowerBi = usePowerBiStore()
 const { habilitarNavegacionPortal } = storeToRefs(usePowerBi)
 
+const useModulos = useModulosStore()
+const { obtenerPermisosByUsuario } = useModulos
+const { permisoPanelControl, tickedSeleccionados, listaModulos } = storeToRefs(useModulos)
+
 onMounted(async () => {
   menulist.value = router.options.routes
     .find((r) => {
       return r.name === 'principal'
     })
     .children
+
+    listaModulos.value = JSON.parse(JSON.stringify(menulist.value));
+
+    await obtenerPermisosByUsuario(usuarioAutenticado.value)
+
+    if (!permisoPanelControl.value) {
+      menulist.value = menulist.value.filter((modulo) => modulo.name !== 'panelControl')
+    }
+
+    menulist.value = menulist.value.filter((modulo) => {
+      if (modulo.children) {
+        modulo.children = modulo.children.filter((departamento) => {
+          if (departamento.children) {
+            departamento.children = departamento.children.filter((children) => {
+              return tickedSeleccionados.value.includes(children.name)
+            })
+          }
+          return departamento.children.length > 0
+        })
+        return modulo.children.length > 0
+      } else {
+        return modulo
+      }
+    })
 
   if (router.currentRoute.value.name === 'principal') {
     router.replace({ name: 'dashboard' })

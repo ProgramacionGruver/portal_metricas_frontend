@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-
 import { apiUsuarios } from 'src/boot/axiosUsuarios'
 import { notificacion } from 'src/helpers/mensajes'
 
@@ -9,45 +8,60 @@ export const useModulosStore = defineStore('modulos', () => {
   const usuariosModulos = ref([])
   const usuariosAcceso = ref([])
   const filtroUsuariosAcceso = ref([])
-  const permisosSucursales = ref([])
+
+  const tickedSeleccionados = ref([])
+  const permisoPanelControl = ref(false)
 
   const obtenerUsuariosModulo = async () => {
     try {
       const { data } = await apiUsuarios.get('/metrica/permiso')
       usuariosModulos.value = data.usuariosModulos
       usuariosAcceso.value = data.usuariosPortal
-      filtroUsuariosAcceso.value = data.usuariosPortal
+      filtroUsuariosAcceso.value = data.usuariosPortal.map(usuario => {
+        return {
+          label: usuario.nombre,
+          value: usuario
+        }
+      })
     } catch (error) {
       console.log(error)
     }
   }
 
-  const actualizarPermisosModulos = async (permisosObj) => {
+  const obtenerPermisosByUsuario = async (usuario) => {
     try {
-      const { data } = await apiUsuarios.put('/modulos', permisosObj)
-      usuariosModulos.value = data
-      notificacion('positive', 'Permisos de módulos actualizados correctamente')
+      const { data } = await apiUsuarios.get(`/metricas/permisos/usuario/${usuario.idUsuario}`)
+
+      tickedSeleccionados.value = data.tickedArbol
+      permisoPanelControl.value = data.permisoPanelControl
     } catch (error) {
-      notificacion('negative', error.response.data.message)
+      console.log(error)
     }
   }
 
-  const obtenerPermisosSucursalesByUser = async (idUsuario) => {
+  const actualizarPermisos = async (permisos) => {
     try {
-      const { data } = await apiUsuarios.post('/permisos/sucursales', { idUsuario })
-      permisosSucursales.value = data
+      await apiUsuarios.put(`/metricas/permisos/usuario/${permisos.usuario.idUsuario}`, permisos)
+      notificacion('positive', 'Permisos actualizados correctamente')
     } catch (error) {
-      notificacion('negative', error.response.data.message)
+      if (error.response.status === 400) {
+        notificacion('warning', error.response.data.message)
+      } else {
+        notificacion('negative', 'Error al actualizar los permisos')
+      }
     }
   }
 
-  const actualizarPermisosSucursales = async (permisosObj) => {
+  const solicitarAcceso = async (solicitud) => {
     try {
-      const { data } = await apiUsuarios.put('/permisos/sucursales', permisosObj)
-      permisosSucursales.value = data
-      notificacion('positive', data.message)
+      await apiUsuarios.post('/metricas/solicitar', solicitud)
+      notificacion('positive', 'Solicitud enviada correctamente. Sistemas se encarga de revisarla y dar respuesta.')
     } catch (error) {
-      notificacion('negative', error.response.data.message)
+      if (error.response.status === 400) {
+        notificacion('warning', error.response.data.message)
+      } else {
+        notificacion('negative', 'Error al actualizar los permisos')
+      }
     }
   }
 
@@ -57,12 +71,13 @@ export const useModulosStore = defineStore('modulos', () => {
     usuariosAcceso,
     filtroUsuariosAcceso,
     listaModulos,
-    permisosSucursales,
+    tickedSeleccionados,
+    permisoPanelControl,
 
     // methods
     obtenerUsuariosModulo,
-    actualizarPermisosModulos,
-    obtenerPermisosSucursalesByUser,
-    actualizarPermisosSucursales
+    obtenerPermisosByUsuario,
+    actualizarPermisos,
+    solicitarAcceso
   }
 })

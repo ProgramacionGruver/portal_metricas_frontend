@@ -7,6 +7,17 @@
         <q-toolbar-title>
           Portal Metricas
         </q-toolbar-title>
+        <q-btn
+          flat
+          round
+          dense
+          icon="info"
+          @click="solicitarAcceso"
+        >
+          <q-tooltip class="text-h5">
+            Si necesitas acceso a alguna métrica, haz clic aquí
+          </q-tooltip>
+        </q-btn>
         <q-btn flat @click="logout"> Cerrar sesión</q-btn>
       </q-toolbar>
     </q-header>
@@ -32,6 +43,8 @@
     <q-page-container>
       <router-view />
     </q-page-container>
+
+    <ModalSolicitarAcceso ref="modalSolicitarAcceso" />
   </q-layout>
 </template>
 
@@ -40,7 +53,7 @@ import { onMounted, ref } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useRouter } from 'vue-router'
 import NavBar from 'src/components/NavBar.vue'
-
+import ModalSolicitarAcceso from 'src/components/ModalSolicitarAcceso.vue'
 import { useAutenticacionStore } from 'src/stores/autenticaciones'
 import { usePowerBiStore } from 'src/stores/powerbi'
 import { useModulosStore } from 'src/stores/permisosModulos'
@@ -48,7 +61,8 @@ import { ID_PORTAL } from 'src/constant/servidor'
 
 export default {
   components: {
-    NavBar
+    NavBar,
+    ModalSolicitarAcceso
   },
   setup () {
     const useUsuario = useAutenticacionStore()
@@ -63,6 +77,8 @@ export default {
 
     const leftDrawerOpen = ref(false)
     const router = useRouter()
+
+    const modalSolicitarAcceso = ref(null)
 
     const logout = () => {
       router.push('/')
@@ -80,14 +96,20 @@ export default {
       return url
     }
 
+    const solicitarAcceso = async () => {
+      modalSolicitarAcceso.value.abrir()
+    }
+
     return {
       usuarioAutenticado,
       leftDrawerOpen,
+      modalSolicitarAcceso,
       logout,
       toggleLeftDrawer () {
         leftDrawerOpen.value = !leftDrawerOpen.value
       },
       calcularURLFoto,
+      solicitarAcceso
     }
   }
 }
