@@ -10,11 +10,11 @@ const routes = [
     component: () => import('layouts/MainLayout.vue'),
     children: [
       { path: '', icono: 'dashboard', label: 'Inicio', name: 'dashboard', component: () => import('src/modules/dashboard/DashBoard.vue') },
-      // { path: 'panelControl', icono: 'admin_panel_settings', label: 'Panel de control', name: 'panelControl', component: () => import('src/modules/control/PanelControlModule.vue') },
+      { path: 'panelControl', icono: 'admin_panel_settings', label: 'Panel de control', name: 'panelControl', component: () => import('src/modules/control/PanelControlModule.vue') },
       {
         path: 'chevrolet',
         label: 'Gomsa Automotriz',
-        name: 'chevrolet',
+        name: 'CH',
         children: [
           {
             path: 'administracion',
@@ -25,8 +25,8 @@ const routes = [
               // { path: 'ventasProducto', icono: 'shopping_bag', label: 'Ventas de prodcuto', name: 'ventasProductoCH', component: () => import('src/modules/chevrolet/administracion/VentasProductosModule.vue') },
               // { path: 'comisiones', icono: 'payments', label: 'Comisiones', name: 'comisionesCH', component: () => import('src/modules/exactor/administracion/ComisionesModule.vue') },
               // { path: 'bdc', icono: 'work', label: 'BDC', name: 'bdcCH', component: () => import('src/modules/exactor/administracion/BDCModule.vue') },
-              { path: 'tableroRitmo', icono: 'table_rows', label: 'Tablero de Ritmo', name: 'tableroRitmoEX', component: () => import('src/modules/exactor/servicio/TableroRitmoModule.vue') },
-              { path: 'reporteDireccion', icono: 'work', label: 'Reporte Dirección', name: 'reporteDireccionEX', component: () => import('src/modules/exactor/rh/ReporteDireccionModule.vue') },
+              { path: 'tableroRitmo', icono: 'table_rows', label: 'Tablero de Ritmo', name: 'tableroRitmoCH', component: () => import('src/modules/exactor/servicio/TableroRitmoModule.vue') },
+              { path: 'reporteDireccion', icono: 'work', label: 'Reporte de Dirección', name: 'reporteDireccionCH', component: () => import('src/modules/exactor/rh/ReporteDireccionModule.vue') },
             ]
           },
           // {
@@ -60,7 +60,7 @@ const routes = [
       {
         path: 'exactor',
         label: 'Exactor',
-        name: 'exactor',
+        name: 'EX',
         children: [
           // {
           //   path: 'administracion',
@@ -158,7 +158,7 @@ const routes = [
       {
         path: 'mercedes',
         label: 'Gomsa Camiones',
-        name: 'mercedes',
+        name: 'MB',
         children: [
           {
             path: 'compras',
@@ -167,6 +167,7 @@ const routes = [
             children: [
               // { path: 'estadoResultados', icono: 'trending_up', label: 'Estado de Resultados Camiones', name: 'estadoResultadosMB', component: () => import('src/modules/mercedes/administracion/EstadoResultadosModule.vue') },
               { path: 'movimientoInventario', icono: 'inventory', label: 'Movimiento de Inventario', name: 'movimientoInventarioMB', component: () => import('src/modules/mercedes/administracion/MovimientoInventarioModule.vue') },
+              { path: 'proveedores', icono: 'local_shipping', label: 'Proveedores', name: 'proveedoresMB', component: () => import('src/modules/mercedes/compras/ProveedoresModule.vue') },
               // { path: 'ventaProducto', icono: 'shopping_bag', label: 'Venta de Producto', name: 'ventaProductoMB', component: () => import('src/modules/mercedes/administracion/VentaProductosModule.vue') },
               // { path: 'analiticaGastos', icono: 'payments', label: 'Analítica de Gastos', name: 'analiticaGastosMB', component: () => import('src/modules/mercedes/administracion/AnaliticaGastosModule.vue') },
               // { path: 'CRM', icono: 'work', label: 'CRM', name: 'crm', component: () => import('src/modules/mercedes/administracion/CRMModule.vue') },
@@ -179,7 +180,7 @@ const routes = [
             name: 'refaccionesMB',
             children: [
               { path: 'csiRefacciones', icono: 'group', label: 'CSI y Clientes perdidos', name: 'csiRefaccionesMB', component: () => import('src/modules/mercedes/refacciones/CSIRefaccionesModule.vue') },
-              { path: 'ventaProducto', icono: 'shopping_bag', label: 'Venta de Producto', name: 'ventaProductoMB', component: () => import('src/modules/mercedes/administracion/VentaProductosModule.vue') },
+              { path: 'ventaProducto', icono: 'shopping_bag', label: 'Ventas de producto', name: 'ventasProductoMB', component: () => import('src/modules/mercedes/administracion/VentaProductosModule.vue') },
             ]
           },
           {
