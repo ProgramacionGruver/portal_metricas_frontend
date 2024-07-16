@@ -44,7 +44,7 @@ export default {
     onMounted(async () => {
       powerbi = new pbi.service.Service(pbi.factories.hpmFactory, pbi.factories.wpmpFactory, pbi.factories.routerFactory)
 
-      await obtenerDatosMetrica(47)
+      await obtenerDatosMetrica(51)
       await obtenerEmbedToken(infoMetricaSeleccionada.value.idGrupoPB, infoMetricaSeleccionada.value.idMetricaPB, 2)
       configurarEmbedReporte(infoMetricaSeleccionada.value)
     })
