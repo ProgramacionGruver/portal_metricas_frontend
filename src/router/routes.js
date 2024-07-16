@@ -201,7 +201,7 @@ const routes = [
             name: 'unidadesMB',
             children: [
               { path: 'inventarioUnidades', icono: 'inventory', label: 'Inventario de Unidades', name: 'inventarioUnidadesMB', component: () => import('src/modules/mercedes/unidades/InventarioUnidadesModule.vue') },
-              // { path: 'csiUnidades', icono: 'group', label: 'CSI Unidades', name: 'csiUnidadesMB', component: () => import('src/modules/mercedes/unidades/CSIUnidadesModule.vue') }
+              { path: 'csiUnidades', icono: 'group', label: 'CSI y Clientes perdidos', name: 'csiUnidadesMB', component: () => import('src/modules/mercedes/unidades/CSIUnidadesModule.vue') }
             ]
           }
         ]
