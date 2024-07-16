@@ -169,6 +169,7 @@ const routes = [
               // { path: 'estadoResultados', icono: 'trending_up', label: 'Estado de Resultados Camiones', name: 'estadoResultadosMB', component: () => import('src/modules/mercedes/administracion/EstadoResultadosModule.vue') },
               { path: 'movimientoInventario', icono: 'inventory', label: 'Movimiento de Inventario', name: 'movimientoInventarioMB', component: () => import('src/modules/mercedes/administracion/MovimientoInventarioModule.vue') },
               { path: 'proveedores', icono: 'local_shipping', label: 'Proveedores', name: 'proveedoresMB', component: () => import('src/modules/mercedes/compras/ProveedoresModule.vue') },
+              { path: 'analisisCompras', icono: 'local_shipping', label: 'Análisis de compras', name: 'analisisComprasMB', component: () => import('src/modules/mercedes/compras/AnalisisCompras.vue') },
               // { path: 'ventaProducto', icono: 'shopping_bag', label: 'Venta de Producto', name: 'ventaProductoMB', component: () => import('src/modules/mercedes/administracion/VentaProductosModule.vue') },
               // { path: 'analiticaGastos', icono: 'payments', label: 'Analítica de Gastos', name: 'analiticaGastosMB', component: () => import('src/modules/mercedes/administracion/AnaliticaGastosModule.vue') },
               // { path: 'CRM', icono: 'work', label: 'CRM', name: 'crm', component: () => import('src/modules/mercedes/administracion/CRMModule.vue') },
