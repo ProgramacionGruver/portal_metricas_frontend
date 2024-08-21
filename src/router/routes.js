@@ -206,6 +206,21 @@ const routes = [
             ]
           }
         ]
+      },
+      {
+        path: 'racingTrading',
+        label: 'Petronas',
+        name: 'RT',
+        children: [
+          {
+            path: 'refacciones',
+            label: 'Refacciones',
+            name: 'refaccionesRT',
+            children: [
+              { path: 'ventasProducto', icono: 'shopping_bag', label: 'Ventas de producto', name: 'ventasProductoRT', component: () => import('src/modules/racingTrading/refacciones/VentasProducto.vue') },
+            ]
+          }
+        ]
       }
     ]
   },
