@@ -174,8 +174,8 @@ const routes = [
             label: 'Refacciones',
             name: 'refaccionesRT',
             children: [
+              { path: 'csiRefacciones', icono: 'group', label: 'CSI y Clientes perdidos', name: 'csiRefaccionesRT', component: () => import('src/modules/racingTrading/refacciones/CSIRefacciones.vue') },
               { path: 'ventasProducto', icono: 'shopping_bag', label: 'Ventas de producto', name: 'ventasProductoRT', component: () => import('src/modules/racingTrading/refacciones/VentasProducto.vue') },
-              { path: 'csiRefacciones', icono: 'group', label: 'CSI y Clientes perdidos', name: 'csiRefaccionesRT', component: () => import('src/modules/racingTrading/refacciones/CSIRefacciones.vue') }
             ]
           }
         ]
