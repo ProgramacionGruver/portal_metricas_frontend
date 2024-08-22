@@ -113,49 +113,6 @@ const routes = [
           // }
         ]
       },
-      // {
-      //   path: 'isuzu',
-      //   label: 'Gomsa Diesel',
-      //   name: 'isuzu',
-      //   children: [
-      //     {
-      //       path: 'adminsitracion',
-      //       label: 'Administración',
-      //       name: 'administracionIS',
-      //       children: [
-      //         { path: 'estadoResultados', icono: 'trending_up', label: 'Estado de Resultados Diesel', name: 'estadoResultadosIS', component: () => import('src/modules/isuzu/administracion/EstadoResultadosModule.vue') },
-      //         { path: 'ventasProducto', icono: 'shopping_bag', label: 'Ventas de prodcuto', name: 'ventasProductoIS', component: () => import('src/modules/isuzu/administracion/VentasProdcutoModule.vue') }
-      //       ]
-      //     },
-      //     {
-      //       path: 'refacciones',
-      //       label: 'Refacciones',
-      //       name: 'refaccionesIS',
-      //       children: [
-      //         { path: 'csiRefacciones', icono: 'group', label: 'CSI Refacciones', name: 'csiRefaccionesIS', component: () => import('src/modules/isuzu/refacciones/CSIRefaccionesModule.vue') }
-      //       ]
-      //     },
-      //     {
-      //       path: 'servicio',
-      //       label: 'Servicio',
-      //       name: 'servicioIS',
-      //       children: [
-      //         { path: 'csiServicio', icono: 'group', label: 'CSI Servicio', name: 'csiServicioIS', component: () => import('src/modules/isuzu/servicio/CSIServicioModule.vue') },
-      //         { path: 'ordenesServicio', icono: 'receipt_long', label: 'Ordenes de Servicio', name: 'ordenesServicioIS', component: () => import('src/modules/isuzu/servicio/OrdenesServicioModule.vue') },
-      //         { path: 'productividadServicio', icono: 'work', label: 'Productividad de Servicio', name: 'productividadServicioIS', component: () => import('src/modules/isuzu/servicio/ProductividadServicioModule.vue') }
-      //       ]
-      //     },
-      //     {
-      //       path: 'unidades',
-      //       label: 'Unidades',
-      //       name: 'unidadesIS',
-      //       children: [
-      //         { path: 'inventarioUnidades', icono: 'inventory', label: 'Inventario de Unidades', name: 'inventarioUnidadesIS', idMetrica: 31, component: () => import('src/modules/isuzu/unidades/InventarioUnidadesModule.vue') },
-      //         { path: 'csiUnidades', icono: 'group', label: 'CSI Unidades', name: 'csiUnidadesIS', idMetrica: 37, component: () => import('src/modules/isuzu/unidades/CSIUnidadesModule.vue') }
-      //       ]
-      //     }
-      //   ]
-      // },
       {
         path: 'mercedes',
         label: 'Gomsa Camiones',
@@ -218,6 +175,21 @@ const routes = [
             name: 'refaccionesRT',
             children: [
               { path: 'ventasProducto', icono: 'shopping_bag', label: 'Ventas de producto', name: 'ventasProductoRT', component: () => import('src/modules/racingTrading/refacciones/VentasProducto.vue') },
+            ]
+          }
+        ]
+      },
+      {
+        path: 'isuzu',
+        label: 'Gomsa Diesel',
+        name: 'IS',
+        children: [
+          {
+            path: 'refacciones',
+            label: 'Refacciones',
+            name: 'refaccionesIS',
+            children: [
+              { path: 'csiRefacciones', icono: 'group', label: 'CSI y Clientes perdidos', name: 'csiRefaccionesIS', component: () => import('src/modules/isuzu/refacciones/CSIRefaccionesModule.vue') },
             ]
           }
         ]
