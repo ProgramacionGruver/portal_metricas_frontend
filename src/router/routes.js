@@ -193,6 +193,14 @@ const routes = [
               { path: 'csiRefacciones', icono: 'group', label: 'CSI y Clientes perdidos', name: 'csiRefaccionesIS', component: () => import('src/modules/isuzu/refacciones/CSIRefaccionesModule.vue') },
               { path: 'ventasProducto', icono: 'shopping_bag', label: 'Ventas de producto', name: 'ventasProductoIS', component: () => import('src/modules/isuzu/refacciones/VentasProducto.vue') },
             ]
+          },
+          {
+            path: 'servicio',
+            label: 'Servicio',
+            name: 'servicioIS',
+            children: [
+              { path: 'csiServicio', icono: 'group', label: 'CSI y Clientes perdidos', name: 'csiServicioIS', component: () => import('src/modules/isuzu/servicio/CSIServicioModule.vue') },
+            ]
           }
         ]
       }
