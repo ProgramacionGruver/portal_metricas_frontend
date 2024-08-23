@@ -147,10 +147,10 @@ const routes = [
             label: 'Servicio',
             name: 'servicioMB',
             children: [
+              { path: 'csiServicio', icono: 'group', label: 'CSI y Clientes perdidos', name: 'csiServicioMB', component: () => import('src/modules/mercedes/servicio/CSIServicioModule.vue') },
               // { path: 'productividadServicio', icono: 'work', label: 'Productividad de Servicio', name: 'productividadServicioMB', component: () => import('src/modules/mercedes/servicio/ProductividadServicioModule.vue') },
               { path: 'tableroServicio', icono: 'table_rows', label: 'Tablero de Servicio', name: 'tableroServicioMB', component: () => import('src/modules/mercedes/servicio/TableroServicioModule.vue') },
               { path: 'ordenesServicio', icono: 'receipt_long', label: 'Ordenes de Servicio', name: 'ordenesServicioMB', component: () => import('src/modules/mercedes/servicio/OrdenesServicioModule.vue') },
-              { path: 'csiServicio', icono: 'group', label: 'CSI y Clientes perdidos', name: 'csiServicioMB', component: () => import('src/modules/mercedes/servicio/CSIServicioModule.vue') }
             ]
           },
           {
@@ -158,8 +158,8 @@ const routes = [
             label: 'Unidades',
             name: 'unidadesMB',
             children: [
+              { path: 'csiUnidades', icono: 'group', label: 'CSI y Clientes perdidos', name: 'csiUnidadesMB', component: () => import('src/modules/mercedes/unidades/CSIUnidadesModule.vue') },
               { path: 'inventarioUnidades', icono: 'inventory', label: 'Inventario de Unidades', name: 'inventarioUnidadesMB', component: () => import('src/modules/mercedes/unidades/InventarioUnidadesModule.vue') },
-              { path: 'csiUnidades', icono: 'group', label: 'CSI y Clientes perdidos', name: 'csiUnidadesMB', component: () => import('src/modules/mercedes/unidades/CSIUnidadesModule.vue') }
             ]
           }
         ]
@@ -191,6 +191,7 @@ const routes = [
             name: 'refaccionesIS',
             children: [
               { path: 'csiRefacciones', icono: 'group', label: 'CSI y Clientes perdidos', name: 'csiRefaccionesIS', component: () => import('src/modules/isuzu/refacciones/CSIRefaccionesModule.vue') },
+              { path: 'ventasProducto', icono: 'shopping_bag', label: 'Ventas de producto', name: 'ventasProductoIS', component: () => import('src/modules/isuzu/refacciones/VentasProducto.vue') },
             ]
           }
         ]
