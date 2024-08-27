@@ -200,6 +200,7 @@ const routes = [
             name: 'servicioIS',
             children: [
               { path: 'csiServicio', icono: 'group', label: 'CSI y Clientes perdidos', name: 'csiServicioIS', component: () => import('src/modules/isuzu/servicio/CSIServicioModule.vue') },
+              { path: 'tableroServicio', icono: 'table_rows', label: 'Tablero de Servicio', name: 'tableroServicioIS', component: () => import('src/modules/isuzu/servicio/TableroServicioModule.vue') },
               { path: 'ordenesServicio', icono: 'receipt_long', label: 'Ordenes de Servicio', name: 'ordenesServicioIS', component: () => import('src/modules/isuzu/servicio/OrdenesServicioModule.vue') },
             ]
           }
