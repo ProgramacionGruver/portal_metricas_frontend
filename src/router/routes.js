@@ -203,6 +203,14 @@ const routes = [
               { path: 'tableroServicio', icono: 'table_rows', label: 'Tablero de Servicio', name: 'tableroServicioIS', component: () => import('src/modules/isuzu/servicio/TableroServicioModule.vue') },
               { path: 'ordenesServicio', icono: 'receipt_long', label: 'Ordenes de Servicio', name: 'ordenesServicioIS', component: () => import('src/modules/isuzu/servicio/OrdenesServicioModule.vue') },
             ]
+          },
+          {
+            path: 'unidades',
+            label: 'Unidades',
+            name: 'unidadesIS',
+            children: [
+              { path: 'csiUnidades', icono: 'group', label: 'CSI y Clientes perdidos', name: 'csiUnidadesIS', component: () => import('src/modules/isuzu/unidades/CSIUnidadesModule.vue') },
+            ]
           }
         ]
       }
