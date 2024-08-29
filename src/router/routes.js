@@ -210,6 +210,7 @@ const routes = [
             name: 'unidadesIS',
             children: [
               { path: 'csiUnidades', icono: 'group', label: 'CSI y Clientes perdidos', name: 'csiUnidadesIS', component: () => import('src/modules/isuzu/unidades/CSIUnidadesModule.vue') },
+              { path: 'inventarioUnidades', icono: 'inventory', label: 'Inventario de Unidades', name: 'inventarioUnidadesIS', component: () => import('src/modules/isuzu/unidades/InventarioUnidadesModule.vue') },
             ]
           }
         ]
