@@ -1,7 +1,7 @@
 <template>
   <q-layout class="q-pa-md">
     <div class="q-ma-md" style="display: flex; justify-content: space-between; align-items: center;">
-      <h2>CSI y Clientes perdidos</h2>
+      <h2>Inventario de unidades</h2>
       <q-btn
         round
         color="primary"
