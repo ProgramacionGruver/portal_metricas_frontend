@@ -166,7 +166,7 @@ const routes = [
       },
       {
         path: 'racingTrading',
-        label: 'Petronas',
+        label: 'Racing',
         name: 'RT',
         children: [
           {
