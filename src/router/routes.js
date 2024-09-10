@@ -170,6 +170,14 @@ const routes = [
         name: 'RT',
         children: [
           {
+            path: 'compras',
+            label: 'Compras',
+            name: 'comprasRT',
+            children: [
+              { path: 'movimientoInventario', icono: 'inventory', label: 'Movimiento de Inventario', name: 'movimientoInventarioRT', component: () => import('src/modules/racingTrading/compras/MovimientoInventario.vue') },
+            ]
+          },
+          {
             path: 'refacciones',
             label: 'Refacciones',
             name: 'refaccionesRT',
