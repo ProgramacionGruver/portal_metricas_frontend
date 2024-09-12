@@ -140,6 +140,7 @@ const routes = [
             children: [
               { path: 'csiRefacciones', icono: 'group', label: 'CSI y Clientes perdidos', name: 'csiRefaccionesMB', component: () => import('src/modules/mercedes/refacciones/CSIRefaccionesModule.vue') },
               { path: 'ventaProducto', icono: 'shopping_bag', label: 'Ventas de producto', name: 'ventasProductoMB', component: () => import('src/modules/mercedes/administracion/VentaProductosModule.vue') },
+              { path: 'analisisPedidos', icono: 'local_shipping', label: 'Análisis de pedidos', name: 'analisisPedidosMB', component: () => import('src/modules/mercedes/refacciones/AnalisisPedido.vue') },
             ]
           },
           {
