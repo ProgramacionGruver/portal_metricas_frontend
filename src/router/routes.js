@@ -119,6 +119,14 @@ const routes = [
         name: 'MB',
         children: [
           {
+            path: 'indicadoresObjetivos',
+            label: 'Indicadores de objetivos',
+            name: 'indicadoresObjetivosMB',
+            children: [
+              { path: "objetivosOperativos", icono: 'trending_up', label: 'Objetivos Operativos', name: 'objetivosOperativosMB', component: () => import('src/modules/mercedes/ObjetivosOperativos.vue') },
+            ]
+          },
+          {
             path: 'compras',
             label: 'Compras',
             name: 'comprasMB',
@@ -162,7 +170,7 @@ const routes = [
               { path: 'csiUnidades', icono: 'group', label: 'CSI y Clientes perdidos', name: 'csiUnidadesMB', component: () => import('src/modules/mercedes/unidades/CSIUnidadesModule.vue') },
               { path: 'inventarioUnidades', icono: 'inventory', label: 'Inventario de Unidades', name: 'inventarioUnidadesMB', component: () => import('src/modules/mercedes/unidades/InventarioUnidadesModule.vue') },
             ]
-          }
+          },
         ]
       },
       {
