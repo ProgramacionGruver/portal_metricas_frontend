@@ -5,7 +5,7 @@
         <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
 
         <q-toolbar-title>
-          Portal Metricas
+          Portal Métricas
         </q-toolbar-title>
         <q-btn
           flat

@@ -6,6 +6,7 @@ import { paramsLoginPowerBiDos } from "src/constant/powerbiParams";
 import qs from 'qs'
 import { ref } from "vue";
 import { apiUsuarios } from "src/boot/axiosUsuarios";
+import { api } from "src/boot/axios";
 
 export const usePowerBiStore = defineStore('powerbi', () => {
   const embedToken = ref(null)
@@ -27,6 +28,8 @@ export const usePowerBiStore = defineStore('powerbi', () => {
     expira: null
   })
 
+  const cuentaSeleccionada = ref(null)
+
 
   const obtenerAccessToken = async (cuentaPowerBi) => {
     try {
@@ -34,19 +37,11 @@ export const usePowerBiStore = defineStore('powerbi', () => {
 
       const config = {
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
+          'Content-Type': 'application/json',
         }
       }
 
-      const params = new URLSearchParams()
-      params.append('grant_type', cuenta.grant_type)
-      params.append('scope', cuenta.scope)
-      params.append('resource', cuenta.resource)
-      params.append('client_id', cuenta.client_id)
-      params.append('username', cuenta.username)
-      params.append('password', cuenta.password)
-
-      const { data } = await apiToken.post('/metricas', params, config)
+      const { data } = await apiUsuarios.post('/metricas/token', { cuenta }, config)
 
       if (cuentaPowerBi === 1) {
         tokenCuentaUno.value.token = data.access_token
@@ -83,23 +78,24 @@ export const usePowerBiStore = defineStore('powerbi', () => {
 
   const obtenerEmbedToken = async (grupoId, reporteId, cuentaPB) => {
     try {
-      const cuentaSeleccionada = cuentaPB === 1 ? tokenCuentaUno : tokenCuentaDos
+      cuentaSeleccionada.value = cuentaPB === 1 ? tokenCuentaUno : tokenCuentaDos
 
-      if (validacionExpiracionToken(cuentaSeleccionada)) {
+      if (validacionExpiracionToken(cuentaSeleccionada.value.value)) {
         await obtenerAccessToken()
       }
 
-      const { data } = await apiPowerBiIntragruver.post(`/${grupoId}/reports/${reporteId}/GenerateToken`, {
-        accessLevel: 'View'
-      },
-      {
+      const config = {
         headers: {
-          'Authorization': `Bearer ${cuentaSeleccionada.value.token}`,
+          'Authorization': `Bearer ${cuentaSeleccionada.value.value.token}`,
           'Cache-Control': 'no-cache'
         }
-      })
+      }
 
-      embedToken.value = data.token
+      const { data } = await apiPowerBiIntragruver.get(`/${grupoId}/reports`, config)
+
+      const reporte = data.value.find(reporte => reporte.id === reporteId)
+
+      embedToken.value = reporte
     } catch (error) {
       console.log(error)
     }
@@ -123,6 +119,7 @@ export const usePowerBiStore = defineStore('powerbi', () => {
     infoMetricaSeleccionada,
     tokenCuentaUno,
     tokenCuentaDos,
+    cuentaSeleccionada,
     // Functions
     obtenerAccessToken,
     obtenerEmbedToken,
