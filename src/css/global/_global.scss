@@ -128,3 +128,43 @@ p{
         flex-direction: column;
     }
 }
+
+.boton--info {
+  animation: breathe 4s ease-in-out infinite;
+}
+
+.custom--tooltip {
+  position: absolute;
+  z-index: 100000;
+  background-color: gray;
+  padding: 8px;
+  border-radius: 6px;
+  width: 20%;
+  height: auto;
+  color: white;
+  top: calc(100% + 0.5rem);
+  left: calc(78% - 1rem);
+  text-align: center;
+  animation: bounce 4s ease-in-out infinite;
+  font-size: 14px;
+}
+
+@keyframes breathe {
+  0% {
+    box-shadow: 0 0 0 0 white;
+  } 70% {
+    box-shadow: 0 0 0 15px rgba(255, 255, 255, 0);
+  } 100% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  } 40% {
+    transform: translateY(-10px);
+  } 60% {
+    transform: translateY(-5px);
+  }
+}

@@ -1,5 +1,5 @@
 <template>
-  <div class="contenedor-dashboard">
+  <div class="contenedor-dashboard q-mt-md">
     <div class="contenedor-banner-fecha">
       <q-card class="card-banner">
         <q-card-section class="row no-wrap items-center">
