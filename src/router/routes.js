@@ -231,6 +231,21 @@ const routes = [
             ]
           }
         ]
+      },
+      {
+        path: 'autoEpica',
+        label: 'Auto Épica',
+        name: 'FO',
+        children: [
+          {
+            path: 'unidades',
+            label: 'Unidades',
+            name: 'unidadesFO',
+            children: [
+              { path: 'csiUnidades', icono: 'group', label: 'CSI y Clientes perdidos', name: 'csiUnidadesFO', component: () => import('src/modules/gac/CSIUnidadesModule.vue') },
+            ]
+          }
+        ]
       }
     ]
   },
