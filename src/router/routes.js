@@ -242,9 +242,10 @@ const routes = [
             label: 'Unidades',
             name: 'unidadesFO',
             children: [
-              { path: 'csiUnidades', icono: 'group', label: 'CSI y Clientes perdidos', name: 'csiUnidadesFO', component: () => import('src/modules/gac/CSIUnidadesModule.vue') },
+              { path: 'csiUnidades', icono: 'group', label: 'CSI y Clientes perdidos', name: 'csiUnidadesFO', component: () => import('src/modules/gac/unidades/CSIUnidadesModule.vue') },
+              { path: 'inventarioUnidades', icono: 'inventory', label: 'Inventario de Unidades', name: 'inventarioUnidadesFO', component: () => import('src/modules/gac/unidades/InventarioUnidadesModule.vue') },
             ]
-          }
+          },
         ]
       }
     ]
