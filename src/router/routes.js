@@ -78,7 +78,7 @@ const routes = [
             name: 'sistemasEX',
             children: [
               // { path: 'acceoUsuarios', icono: 'group', label: 'Acceso de usuarios', name: 'acceoUsuariosEX', component: () => import('src/modules/exactor/sistemas/AccesoUsuariosModule.vue') },
-              { path: 'informeTickets', icono: 'receipt_long', label: 'Informe OsTicket', name: 'informeTicketsEX', component: () => import('src/modules/exactor/sistemas/InformeOsTicketModule.vue') },
+              { path: 'informeTickets', icono: 'receipt_long', label: 'Informe Tickets', name: 'informeTicketsEX', component: () => import('src/modules/exactor/sistemas/InformeOsTicketModule.vue') },
               // { path: 'inventarioHosts', icono: 'inventory', label: 'Inventario Hosts', name: 'inventarioHostsEX', component: () => import('src/modules/exactor/sistemas/InventarioHostsModule.vue') },
               // { path: 'relojCheck', icono: 'schedule', label: 'Reloj Check', name: 'relojCheckEX', component: () => import('src/modules/exactor/sistemas/RelojCheckModule.vue') },
             ]
