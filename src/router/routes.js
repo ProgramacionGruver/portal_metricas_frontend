@@ -238,6 +238,15 @@ const routes = [
         name: 'FO',
         children: [
           {
+            path: 'refacciones',
+            label: 'Refacciones',
+            name: 'refaccionesFO',
+            children: [
+              { path: 'csiRefacciones', icono: 'group', label: 'CSI y Clientes perdidos', name: 'csiRefaccionesFO', component: () => import('src/modules/gac/refacciones/CSIRefaccionesModule.vue') },
+              {  path: 'ventasProducto', icono: 'shopping_bag', label: 'Ventas de producto', name: 'ventasProductoFO', component: () => import('src/modules/gac/refacciones/VentasProductoModule.vue') },
+            ]
+          },
+          {
             path: 'unidades',
             label: 'Unidades',
             name: 'unidadesFO',
