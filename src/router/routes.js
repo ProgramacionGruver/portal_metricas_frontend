@@ -30,14 +30,14 @@ const routes = [
               { path: 'reporteDireccion', icono: 'work', label: 'Reporte de Dirección', name: 'reporteDireccionCH', component: () => import('src/modules/exactor/rh/ReporteDireccionModule.vue') },
             ]
           },
-          // {
-          //   path: 'refacciones',
-          //   label: 'Refacciones',
-          //   name: 'refaccionesCH',
-          //   children: [
-          //     { path: 'csiRefacciones', icono: 'group', label: 'CSI Refacciones', name: 'csiRefaccionesCH', component: () => import('src/modules/chevrolet/refacciones/CSIRecfaccionesModule.vue') }
-          //   ]
-          // },
+          {
+            path: 'refacciones',
+            label: 'Refacciones',
+            name: 'refaccionesCH',
+            children: [
+              { path: 'csiRefacciones', icono: 'group', label: 'CSI Refacciones', name: 'csiRefaccionesCH', component: () => import('src/modules/chevrolet/refacciones/CSIRecfaccionesModule.vue') }
+            ]
+          },
           // {
           //   path: 'servicio',
           //   label: 'Servicio',
