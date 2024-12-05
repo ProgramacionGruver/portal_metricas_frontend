@@ -27,7 +27,7 @@ const routes = [
               // { path: 'comisiones', icono: 'payments', label: 'Comisiones', name: 'comisionesCH', component: () => import('src/modules/exactor/administracion/ComisionesModule.vue') },
               // { path: 'bdc', icono: 'work', label: 'BDC', name: 'bdcCH', component: () => import('src/modules/exactor/administracion/BDCModule.vue') },
               { path: 'tableroRitmo', icono: 'table_rows', label: 'Tablero de Ritmo', name: 'tableroRitmoCH', component: () => import('src/modules/exactor/servicio/TableroRitmoModule.vue') },
-              { path: 'reporteDireccion', icono: 'work', label: 'Reporte de Dirección', name: 'reporteDireccionCH', component: () => import('src/modules/exactor/rh/ReporteDireccionModule.vue') },
+              // { path: 'reporteDireccion', ono: 'work', label: 'Reporte de Dirección', name: 'reporteDireccionCH', component: () => import('src/modules/exactor/rh/ReporteDireccionModule.vue') },
             ]
           },
           {
