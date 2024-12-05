@@ -35,7 +35,7 @@ const routes = [
             label: 'Refacciones',
             name: 'refaccionesCH',
             children: [
-              { path: 'csiRefaccionesCH', icono: 'group', label: 'CSI Refacciones', name: 'csiRefaccionesCH', component: () => import('src/modules/chevrolet/refacciones/CSIRecfaccionesModule.vue') },
+              { path: 'csiRefaccionesCH', icono: 'group', label: 'CSI y Clientes perdidos', name: 'csiRefaccionesCH', component: () => import('src/modules/chevrolet/refacciones/CSIRecfaccionesModule.vue') },
               { path: 'ventasProductoCH', icono: 'shopping_bag', label: 'Ventas de producto', name: 'ventasProductoCH', component: () => import('src/modules/chevrolet/refacciones/VentasProductosModule.vue') },
             ]
           },
