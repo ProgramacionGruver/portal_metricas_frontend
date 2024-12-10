@@ -39,15 +39,15 @@ const routes = [
               { path: 'ventasProductoCH', icono: 'shopping_bag', label: 'Ventas de producto', name: 'ventasProductoCH', component: () => import('src/modules/chevrolet/refacciones/VentasProductosModule.vue') },
             ]
           },
-          // {
-          //   path: 'servicio',
-          //   label: 'Servicio',
-          //   name: 'servicioCH',
-          //   children: [
-          //     { path: 'csiServicio', icono: 'group', label: 'CSI Servicio', name: 'csiServicioCH', component: () => import('src/modules/chevrolet/servicio/CSIServicioModule.vue') },
-          //     { path: 'ordenesServicio', icono: 'receipt_long', label: 'Ordenes de Servicio', name: 'ordenesServicioCH', component: () => import('src/modules/chevrolet/servicio/OrdenesServicioModule.vue') },
-          //   ]
-          // },
+          {
+            path: 'servicio',
+            label: 'Servicio',
+            name: 'servicioCH',
+            children: [
+              { path: 'csiServicioCH', icono: 'group', label: 'CSI y Clientes perdidos', name: 'csiServicioCH', component: () => import('src/modules/chevrolet/servicio/CSIServicioModule.vue') },
+              // { path: 'ordenesServicio', icono: 'receipt_long', label: 'Ordenes de Servicio', name: 'ordenesServicioCH', component: () => import('src/modules/chevrolet/servicio/OrdenesServicioModule.vue') },
+            ]
+          },
           // {
           //   path: 'unidades',
           //   label: 'Unidades',
