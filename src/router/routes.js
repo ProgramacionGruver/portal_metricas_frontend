@@ -53,7 +53,7 @@ const routes = [
           //   label: 'Unidades',
           //   name: 'unidadesCH',
           //   children: [
-          //     { path: 'inventarioUnidades', icono: 'inventory', label: 'Inventario de Unidades', name: 'inventarioUnidadesCH', component: () => import('src/modules/chevrolet/unidades/InventarioUnidadesModule.vue') },
+          //     { path: 'inventarioUnidades', icono: 'inventory', label: 'Inventario de unidades y ventas', name: 'inventarioUnidadesCH', component: () => import('src/modules/chevrolet/unidades/InventarioUnidadesModule.vue') },
           //     { path: 'csiUnidaddes', icono: 'group', label: 'CSI Unidades', name: 'csiUnidaddesCH', component: () => import('src/modules/chevrolet/unidades/CSIUnidadesModule.vue') }
           //   ]
           // }
@@ -170,7 +170,7 @@ const routes = [
             name: 'unidadesMB',
             children: [
               { path: 'csiUnidades', icono: 'group', label: 'CSI y Clientes perdidos', name: 'csiUnidadesMB', component: () => import('src/modules/mercedes/unidades/CSIUnidadesModule.vue') },
-              { path: 'inventarioUnidades', icono: 'inventory', label: 'Inventario de Unidades', name: 'inventarioUnidadesMB', component: () => import('src/modules/mercedes/unidades/InventarioUnidadesModule.vue') },
+              { path: 'inventarioUnidades', icono: 'inventory', label: 'Inventario de unidades y ventas', name: 'inventarioUnidadesMB', component: () => import('src/modules/mercedes/unidades/InventarioUnidadesModule.vue') },
             ]
           },
         ]
@@ -229,7 +229,7 @@ const routes = [
             name: 'unidadesIS',
             children: [
               { path: 'csiUnidades', icono: 'group', label: 'CSI y Clientes perdidos', name: 'csiUnidadesIS', component: () => import('src/modules/isuzu/unidades/CSIUnidadesModule.vue') },
-              { path: 'inventarioUnidades', icono: 'inventory', label: 'Inventario de Unidades', name: 'inventarioUnidadesIS', component: () => import('src/modules/isuzu/unidades/InventarioUnidadesModule.vue') },
+              { path: 'inventarioUnidades', icono: 'inventory', label: 'Inventario de unidades y ventas', name: 'inventarioUnidadesIS', component: () => import('src/modules/isuzu/unidades/InventarioUnidadesModule.vue') },
             ]
           }
         ]
@@ -262,7 +262,7 @@ const routes = [
             name: 'unidadesFO',
             children: [
               { path: 'csiUnidades', icono: 'group', label: 'CSI y Clientes perdidos', name: 'csiUnidadesFO', component: () => import('src/modules/gac/unidades/CSIUnidadesModule.vue') },
-              { path: 'inventarioUnidades', icono: 'inventory', label: 'Inventario de Unidades', name: 'inventarioUnidadesFO', component: () => import('src/modules/gac/unidades/InventarioUnidadesModule.vue') },
+              { path: 'inventarioUnidades', icono: 'inventory', label: 'Inventario de unidades y ventas', name: 'inventarioUnidadesFO', component: () => import('src/modules/gac/unidades/InventarioUnidadesModule.vue') },
             ]
           },
         ]
