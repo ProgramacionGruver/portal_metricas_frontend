@@ -1,7 +1,7 @@
 <template>
   <q-layout class="q-pa-md">
     <div class="q-ma-md" style="display: flex; justify-content: space-between; align-items: center;">
-      <h2>CSI Unidades</h2>
+      <h2>CSI y Clientes perdidos</h2>
       <q-btn
         round
         color="primary"
@@ -16,7 +16,7 @@
     </div>
     <q-separator color="primary" class="q-my-md" inset />
     <div class="contenedorMetrica">
-      <div class="superposicionFramePb"></div>
+      <!-- <div class="superposicionFramePb"></div> -->
       <div ref="powerBiContainer" style="height: 90vh;"></div>
     </div>
   </q-layout>
@@ -39,12 +39,12 @@ export default {
 
     const usePowerBi = usePowerBiStore()
     const { obtenerDatosMetrica, obtenerEmbedToken } = usePowerBi
-    const { embedToken, infoMetricaSeleccionada } = storeToRefs(usePowerBi)
+    const { embedToken, infoMetricaSeleccionada, cuentaSeleccionada } = storeToRefs(usePowerBi)
 
     onMounted(async () => {
       powerbi = new pbi.service.Service(pbi.factories.hpmFactory, pbi.factories.wpmpFactory, pbi.factories.routerFactory)
 
-      await obtenerDatosMetrica(43)
+      await obtenerDatosMetrica(74)
       await obtenerEmbedToken(infoMetricaSeleccionada.value.idGrupoPB, infoMetricaSeleccionada.value.idMetricaPB, 2)
       configurarEmbedReporte(infoMetricaSeleccionada.value)
     })
@@ -52,10 +52,10 @@ export default {
     const configurarEmbedReporte = (objReporte) => {
       const config = {
         type: 'report',
-        tokenType: pbi.models.TokenType.Embed,
-        accessToken: embedToken.value,
-        embedUrl: objReporte.urlMetrica,
-        id: objReporte.idMetricaPB,
+        // tokenType: pbi.models.TokenType.Embed,
+        accessToken: cuentaSeleccionada.value.value.token,
+        embedUrl: embedToken.value.embedUrl,
+        id: embedToken.value.id,
         permissions: pbi.models.Permissions.All,
         settings: {
           filterPaneEnabled: false,
@@ -94,15 +94,3 @@ export default {
 }
 
 </script>
-
-<style>
-.contenedorMetrica {
-  position: relative;
-}
-
-.superposicionFramePb {
-  background-color: white !important;
-  padding: 20px 90% !important;
-  position: absolute;
-}
-</style>

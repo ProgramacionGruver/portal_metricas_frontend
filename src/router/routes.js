@@ -48,15 +48,15 @@ const routes = [
               // { path: 'ordenesServicio', icono: 'receipt_long', label: 'Ordenes de Servicio', name: 'ordenesServicioCH', component: () => import('src/modules/chevrolet/servicio/OrdenesServicioModule.vue') },
             ]
           },
-          // {
-          //   path: 'unidades',
-          //   label: 'Unidades',
-          //   name: 'unidadesCH',
-          //   children: [
-          //     { path: 'inventarioUnidades', icono: 'inventory', label: 'Inventario de unidades y ventas', name: 'inventarioUnidadesCH', component: () => import('src/modules/chevrolet/unidades/InventarioUnidadesModule.vue') },
-          //     { path: 'csiUnidaddes', icono: 'group', label: 'CSI Unidades', name: 'csiUnidaddesCH', component: () => import('src/modules/chevrolet/unidades/CSIUnidadesModule.vue') }
-          //   ]
-          // }
+          {
+            path: 'unidades',
+            label: 'Unidades',
+            name: 'unidadesCH',
+            children: [
+              // { path: 'inventarioUnidades', icono: 'inventory', label: 'Inventario de unidades y ventas', name: 'inventarioUnidadesCH', component: () => import('src/modules/chevrolet/unidades/InventarioUnidadesModule.vue') },
+              { path: 'csiUnidaddes', icono: 'group', label: 'CSI y Clientes perdidos', name: 'csiUnidadesCH', component: () => import('src/modules/chevrolet/unidades/CSIUnidadesModule.vue') }
+            ]
+          }
         ]
       },
       {
@@ -89,7 +89,7 @@ const routes = [
             label: 'Mercadotecnia',
             name: 'mercadotecniaEX',
             children: [
-              { path: 'informeTickets', icono: 'receipt_long', label: 'Informe OsTicket MK', name: 'informeTicketsMKEX', component: () => import('src/modules/exactor/mercadotecnia/InformeOsTicketModule.vue') },
+              { path: 'informeTickets', icono: 'receipt_long', label: 'Informe Tickets', name: 'informeTicketsMKEX', component: () => import('src/modules/exactor/mercadotecnia/InformeOsTicketModule.vue') },
             ]
           },
           {
