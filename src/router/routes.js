@@ -53,8 +53,8 @@ const routes = [
             label: 'Unidades',
             name: 'unidadesCH',
             children: [
-              // { path: 'inventarioUnidades', icono: 'inventory', label: 'Inventario de unidades y ventas', name: 'inventarioUnidadesCH', component: () => import('src/modules/chevrolet/unidades/InventarioUnidadesModule.vue') },
-              { path: 'csiUnidaddes', icono: 'group', label: 'CSI y Clientes perdidos', name: 'csiUnidadesCH', component: () => import('src/modules/chevrolet/unidades/CSIUnidadesModule.vue') }
+              { path: 'csiUnidaddes', icono: 'group', label: 'CSI y Clientes perdidos', name: 'csiUnidadesCH', component: () => import('src/modules/chevrolet/unidades/CSIUnidadesModule.vue') },
+              { path: 'inventarioUnidades', icono: 'inventory', label: 'Inventario de unidades y ventas', name: 'inventarioUnidadesCH', component: () => import('src/modules/chevrolet/unidades/InventarioUnidadesModule.vue') },
             ]
           }
         ]
