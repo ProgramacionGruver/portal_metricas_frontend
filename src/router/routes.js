@@ -45,7 +45,7 @@ const routes = [
             name: 'servicioCH',
             children: [
               { path: 'csiServicioCH', icono: 'group', label: 'CSI y Clientes perdidos', name: 'csiServicioCH', component: () => import('src/modules/chevrolet/servicio/CSIServicioModule.vue') },
-              // { path: 'ordenesServicio', icono: 'receipt_long', label: 'Ordenes de Servicio', name: 'ordenesServicioCH', component: () => import('src/modules/chevrolet/servicio/OrdenesServicioModule.vue') },
+              { path: 'ordenesServicio', icono: 'receipt_long', label: 'Ordenes de Servicio', name: 'ordenesServicioCH', component: () => import('src/modules/chevrolet/servicio/OrdenesServicioModule.vue') },
             ]
           },
           {
