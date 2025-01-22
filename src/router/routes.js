@@ -254,6 +254,7 @@ const routes = [
             name: 'servicioFO',
             children: [
               { path: 'csiServicio', icono: 'group', label: 'CSI y Clientes perdidos', name: 'csiServicioFO', component: () => import('src/modules/gac/servicio/CSIServicioModule.vue') },
+              { path: 'ordenesServicio', icono: 'receipt_long', label: 'Ordenes de Servicio', name: 'ordenesServicioFO', component: () => import('src/modules/gac/servicio/OrdenesServicioModule.vue') },
             ]
           },
           {
