@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import { apiUsuarios } from 'src/boot/axiosUsuarios'
 import { ref } from 'vue'
 import { notificacion } from 'src/helpers/mensajes'
+import { ID_PORTAL } from 'src/constant/servidor'
 
 export const useAutenticacionStore = defineStore('autenticaciones', () => {
   const usuarioAutenticado = ref(null)
@@ -13,7 +14,7 @@ export const useAutenticacionStore = defineStore('autenticaciones', () => {
     try {
       const { data } = await apiUsuarios.post('/usuarios/login', usuario)
       isLogin.value = true
-      localStorage.setItem('token', data)
+      localStorage.setItem(`token${ID_PORTAL}`, data)
 
       await autenticarUsuario()
       router.push('/principal')
@@ -26,7 +27,7 @@ export const useAutenticacionStore = defineStore('autenticaciones', () => {
   const cerrarSesion = async () => {
     try {
       usuarioAutenticado.value = null
-      localStorage.removeItem('token')
+      localStorage.removeItem(`token${ID_PORTAL}`)
       isLogin.value = false
     } catch (error) {
       // console.log(error)
@@ -34,7 +35,7 @@ export const useAutenticacionStore = defineStore('autenticaciones', () => {
   }
 
   const autenticarUsuario = async () => {
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem(`token${ID_PORTAL}`)
     if (!token) {
       return
     }
@@ -42,7 +43,8 @@ export const useAutenticacionStore = defineStore('autenticaciones', () => {
     const configuracion = {
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`
+        Authorization: `Bearer ${token}`,
+        idPort: ID_PORTAL,
       }
     }
 
