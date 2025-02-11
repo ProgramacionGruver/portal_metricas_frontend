@@ -112,6 +112,14 @@ const routes = [
           //     { path: 'tableroRitmo', icono: 'table_rows', label: 'Tablero de Ritmo', name: 'tableroRitmoEX', component: () => import('src/modules/exactor/servicio/TableroRitmoModule.vue') },
           //   ]
           // }
+          {
+            path: 'contabilidad',
+            label: 'Contabilidad',
+            name: 'contabilidadEX',
+            children: [
+              { path: 'informeTickets', icono: 'receipt_long', label: 'Informe Tickets', name: 'informeTicketsCECO', component: () => import('src/modules/exactor/contabilidad/InformeTickets.vue') },
+            ]
+          }
         ]
       },
       {
@@ -141,6 +149,7 @@ const routes = [
               // { path: 'analiticaGastos', icono: 'payments', label: 'Analítica de Gastos', name: 'analiticaGastosMB', component: () => import('src/modules/mercedes/administracion/AnaliticaGastosModule.vue') },
               // { path: 'CRM', icono: 'work', label: 'CRM', name: 'crm', component: () => import('src/modules/mercedes/administracion/CRMModule.vue') },
               // { path: 'ventasCruzadas', icono: 'shopping_bag', label: 'Ventas Cruzadas', name: 'ventasCruzadasMB', component: () => import('src/modules/mercedes/administracion/VentasCruzadasModule.vue') }
+              { path: 'informeRequisicionesCompra', icono: 'inventory', label: 'Informe Requisicones de compra', name: 'informeRequisicionesCompraMB', component: () => import('src/modules/mercedes/compras/RequisicionesCompra.vue') },
             ]
           },
           {
