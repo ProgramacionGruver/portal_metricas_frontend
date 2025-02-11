@@ -149,7 +149,7 @@ const routes = [
               // { path: 'analiticaGastos', icono: 'payments', label: 'Analítica de Gastos', name: 'analiticaGastosMB', component: () => import('src/modules/mercedes/administracion/AnaliticaGastosModule.vue') },
               // { path: 'CRM', icono: 'work', label: 'CRM', name: 'crm', component: () => import('src/modules/mercedes/administracion/CRMModule.vue') },
               // { path: 'ventasCruzadas', icono: 'shopping_bag', label: 'Ventas Cruzadas', name: 'ventasCruzadasMB', component: () => import('src/modules/mercedes/administracion/VentasCruzadasModule.vue') }
-              { path: 'informeRequisicionesCompra', icono: 'inventory', label: 'Informe Requisicones de compra', name: 'informeRequisicionesCompraMB', component: () => import('src/modules/mercedes/compras/RequisicionesCompra.vue') },
+              { path: 'informeRequisicionesCompra', icono: 'inventory', label: 'Informe Requisiciones de compra', name: 'informeRequisicionesCompraMB', component: () => import('src/modules/mercedes/compras/RequisicionesCompra.vue') },
             ]
           },
           {
