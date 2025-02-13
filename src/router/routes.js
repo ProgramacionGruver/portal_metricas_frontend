@@ -214,6 +214,14 @@ const routes = [
         name: 'IS',
         children: [
           {
+            path: 'compras',
+            label: 'Compras',
+            name: 'comprasIS',
+            children: [
+              { path: 'movimientoInventario', icono: 'inventory', label: 'Movimiento de Inventario', name: 'movimientoInventarioIS', component: () => import('src/modules/isuzu/compras/MovimientoInventario.vue') },
+            ]
+          },
+          {
             path: 'refacciones',
             label: 'Refacciones',
             name: 'refaccionesIS',
