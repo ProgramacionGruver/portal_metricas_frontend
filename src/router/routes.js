@@ -102,6 +102,7 @@ const routes = [
               // { path: 'retardos', icono: 'schedule', label: 'Retardos', name: 'retardosEX', component: () => import('src/modules/exactor/rh/RetardosModule.vue') },
               // { path: 'tablero5s', icono: 'emergency', label: 'Tablero 5s', name: 'tablero5sEX', component: () => import('src/modules/exactor/rh/Tablero5sModule.vue') },
               { path: 'tableroRRHH', icono: 'table_rows', label: 'Tablero RRHH', name: 'tableroRRHHEX', component: () => import('src/modules/exactor/rh/TableroRRHHModule.vue') },
+              { path: 'productivdadCamiones', icono: 'work', label: 'Productividad Camiones', name: 'productividadCamionesEX', component: () => import('src/modules/exactor/rh/ProductividadCamiones.vue') },
             ]
           },
           // {
