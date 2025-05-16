@@ -124,7 +124,7 @@ const routes = [
       },
       {
         path: 'mercedes',
-        label: 'Gruver Camiones',
+        label: 'Gomsa Camiones',
         name: 'MB',
         children: [
           {
