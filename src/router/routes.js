@@ -14,7 +14,7 @@ const routes = [
       { path: 'panelControl', icono: 'admin_panel_settings', label: 'Panel de control', name: 'panelControl', component: () => import('src/modules/control/PanelControlModule.vue') },
       {
         path: 'chevrolet',
-        label: 'Gomsa Automotriz',
+        label: 'Chevrolet',
         name: 'CH',
         children: [
           {
@@ -124,7 +124,7 @@ const routes = [
       },
       {
         path: 'mercedes',
-        label: 'Gomsa Camiones',
+        label: 'Daimler',
         name: 'MB',
         children: [
           {
@@ -220,7 +220,7 @@ const routes = [
       },
       {
         path: 'isuzu',
-        label: 'Gomsa Diesel',
+        label: 'Isuzu',
         name: 'IS',
         children: [
           {
@@ -263,7 +263,7 @@ const routes = [
       },
       {
         path: 'autoEpica',
-        label: 'Auto Épica',
+        label: 'GAC',
         name: 'FO',
         children: [
           {
