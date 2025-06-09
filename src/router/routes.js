@@ -134,6 +134,7 @@ const routes = [
             children: [
               { path: "objetivosOperativos", icono: 'trending_up', label: 'Objetivos Operativos', name: 'objetivosOperativosMB', component: () => import('src/modules/mercedes/ObjetivosOperativos.vue') },
               { path: 'productivdadCamiones', icono: 'work', label: 'Productividad Camiones', name: 'productividadCamionesEX', component: () => import('src/modules/exactor/rh/ProductividadCamiones.vue') },
+              { path: 'ventaPresupuesto', icono: 'attach_money', label: 'Venta vs Presupuesto', name: 'ventaPresupuestoMB', component: () => import('src/modules/mercedes/administracion/VentaPresupuesto.vue') },
             ]
           },
           {
