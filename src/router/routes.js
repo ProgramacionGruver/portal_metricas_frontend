@@ -18,6 +18,14 @@ const routes = [
         name: 'CH',
         children: [
           {
+            path: 'indicadores',
+            label: 'Indicadores',
+            name: 'indicadoresCH',
+            children: [
+              { path: 'ventaPresupuesto', icono: 'attach_money', label: 'Venta vs Presupuesto', name: 'ventaPresupuestoCH', component: () => import('src/modules/chevrolet/indicadores/VentaPresupuestoModule.vue') },
+            ]
+          },
+          {
             path: 'administracion',
             label: 'Administración',
             name: 'administracionCH',
