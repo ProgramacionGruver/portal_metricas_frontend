@@ -127,6 +127,14 @@ const routes = [
             children: [
               { path: 'informeTickets', icono: 'receipt_long', label: 'Informe Tickets', name: 'informeTicketsCECO', component: () => import('src/modules/exactor/contabilidad/InformeTickets.vue') },
             ]
+          },
+          {
+            path: 'controlInterno',
+            label: 'Control Interno',
+            name: 'controlInternoMB',
+            children: [
+              { path: 'informeTickets', icono: 'receipt_long', label: 'Informe Tickets', name: 'informeTicketsCIMB', component: () => import('src/modules/mercedes/controlnterno/InformeTickets.vue') },
+            ]
           }
         ]
       },
@@ -193,14 +201,6 @@ const routes = [
               { path: 'inventarioUnidades', icono: 'inventory', label: 'Inventario de unidades y ventas', name: 'inventarioUnidadesMB', component: () => import('src/modules/mercedes/unidades/InventarioUnidadesModule.vue') },
             ]
           },
-          {
-            path: 'controlInterno',
-            label: 'Control Interno',
-            name: 'controlInternoMB',
-            children: [
-              { path: 'informeTickets', icono: 'receipt_long', label: 'Informe Tickets', name: 'informeTicketsCIMB', component: () => import('src/modules/mercedes/controlnterno/InformeTickets.vue') },
-            ]
-          }
         ]
       },
       {
