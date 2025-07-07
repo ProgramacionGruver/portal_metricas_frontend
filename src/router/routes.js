@@ -233,6 +233,14 @@ const routes = [
         name: 'IS',
         children: [
           {
+            path: 'indicadores',
+            label: 'Indicadores',
+            name: 'indicadoresIS',
+            children: [
+              { path: 'ventaPresupuesto', icono: 'attach_money', label: 'Venta vs Presupuesto', name: 'ventaPresupuestoIS', component: () => import('src/modules/isuzu/indicadores/VentaPresupuesto.vue') },
+            ]
+          },
+          {
             path: 'compras',
             label: 'Compras',
             name: 'comprasIS',
