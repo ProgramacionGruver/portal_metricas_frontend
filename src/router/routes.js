@@ -284,6 +284,14 @@ const routes = [
         name: 'FO',
         children: [
           {
+            path: 'indicadores',
+            label: 'Indicadores',
+            name: 'indicadoresGAC',
+            children: [
+              { path: 'ventaPresupuesto', icono: 'attach_money', label: 'Venta vs Presupuesto', name: 'ventaPresupuestoGAC', component: () => import('src/modules/gac/indicadores/VentaPresupuesto.vue') },
+            ]
+          },
+          {
             path: 'refacciones',
             label: 'Refacciones',
             name: 'refaccionesFO',
