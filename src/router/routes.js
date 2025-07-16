@@ -23,7 +23,7 @@ const routes = [
             name: 'indicadoresCH',
             children: [
               { path: 'ventaPresupuesto', icono: 'attach_money', label: 'Venta vs Presupuesto', name: 'ventaPresupuestoCH', component: () => import('src/modules/chevrolet/indicadores/VentaPresupuestoModule.vue') },
-              { path: 'productividad', icono: 'work', label: 'Productividad', name: 'productividadCH', component: () => import('src/modules/chevrolet/indicadores/ProductividadAutos.vue') },
+              { path: 'productividad', icono: 'work', label: 'Productividad Autos', name: 'productividadCH', component: () => import('src/modules/chevrolet/indicadores/ProductividadAutos.vue') },
             ]
           },
           {
