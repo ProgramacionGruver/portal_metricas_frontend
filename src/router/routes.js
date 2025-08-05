@@ -215,6 +215,7 @@ const routes = [
             name: 'indicadoresRT',
             children: [
               { path: 'productividadRT', icono: 'work', label: 'Productividad Racing Trading', name: 'productividadRT', component: () => import('src/modules/racingTrading/indicadores/ProductividadRacingTrading.vue') },
+              { path: 'ventaPresupuesto', icono: 'attach_money', label: 'Venta vs Presupuesto', name: 'ventaPresupuestoRT', component: () => import('src/modules/racingTrading/indicadores/VentaPresupuesto.vue') },
             ]
           },
           {
