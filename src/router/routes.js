@@ -210,6 +210,14 @@ const routes = [
         name: 'RT',
         children: [
           {
+            path: 'indicadores',
+            label: 'Indicadores',
+            name: 'indicadoresRT',
+            children: [
+              { path: 'productividadRT', icono: 'work', label: 'Productividad Racing Trading', name: 'productividadRT', component: () => import('src/modules/racingTrading/indicadores/ProductividadRacingTrading.vue') },
+            ]
+          },
+          {
             path: 'compras',
             label: 'Compras',
             name: 'comprasRT',
