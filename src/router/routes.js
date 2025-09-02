@@ -329,6 +329,21 @@ const routes = [
             ]
           },
         ]
+      },
+      {
+        path: 'autoCenter',
+        label: 'Jetour',
+        name: 'AC',
+        children: [
+          {
+            path: 'unidades',
+            label: 'Unidades',
+            name: 'unidadesAC',
+            children: [
+              { path: 'inventarioUnidades', icono: 'inventory', label: 'Inventario de unidades y ventas', name: 'inventarioUnidadesAC', component: () => import('src/modules/autoCenter/InventarioUnidades.vue') },
+            ]
+          },
+        ]
       }
     ]
   },
