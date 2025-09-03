@@ -340,7 +340,8 @@ const routes = [
             label: 'Unidades',
             name: 'unidadesAC',
             children: [
-              { path: 'inventarioUnidades', icono: 'inventory', label: 'Inventario de unidades y ventas', name: 'inventarioUnidadesAC', component: () => import('src/modules/autoCenter/InventarioUnidades.vue') },
+              { path: 'csiUnidades', icono: 'group', label: 'CSI y Clientes perdidos', name: 'csiUnidadesAC', component: () => import('src/modules/autoCenter/unidades/CSIUnidades.vue') },
+              { path: 'inventarioUnidades', icono: 'inventory', label: 'Inventario de unidades y ventas', name: 'inventarioUnidadesAC', component: () => import('src/modules/autoCenter/unidades/InventarioUnidades.vue') },
             ]
           },
         ]
