@@ -73,15 +73,14 @@ const routes = [
         label: 'Exactor',
         name: 'EX',
         children: [
-          // {
-          //   path: 'administracion',
-          //   label: 'Administración',
-          //   name: 'administracionEX',
-          //   children: [
-          //     { path: 'comisiones', icono: 'payments', label: 'Comisiones', name: 'comisionesEX', component: () => import('src/modules/exactor/administracion/ComisionesModule.vue') },
-          //     { path: 'bdc', icono: 'work', label: 'BDC', name: 'bdcEX', component: () => import('src/modules/exactor/administracion/BDCModule.vue') },
-          //   ]
-          // },
+          {
+            path: 'administracion',
+            label: 'Administración',
+            name: 'administracionEX',
+            children: [
+              { path: 'informeTickets', icono: 'receipt_long', label: 'Informe Tickets', name: 'informeTicketsADM', component: () => import('src/modules/exactor/administracion/InformeTickets.vue') },
+            ]
+          },
           {
             path: 'sistemas',
             label: 'Sistemas',
