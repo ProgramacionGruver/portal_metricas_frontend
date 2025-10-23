@@ -168,3 +168,31 @@ p{
     transform: translateY(-5px);
   }
 }
+
+.control--tabla {
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  border-top: none;
+  font-size: 1.4rem;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.tabla--paginada {
+  border: 1px solid #e0e0e0;
+  box-shadow: none;
+}
+
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  column-gap: 1rem;
+
+  @include adaptar(768px) {
+    width: 100%;
+  }
+}

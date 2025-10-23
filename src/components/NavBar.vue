@@ -92,23 +92,25 @@ onMounted(async () => {
 
     await obtenerPermisosByUsuario(usuarioAutenticado.value)
 
-    if (!permisoPanelControl.value) {
-      menulist.value = menulist.value.filter((modulo) => modulo.name !== 'panelControl')
-    }
-
     menulist.value = menulist.value.filter((modulo) => {
+      if (modulo.name === 'dashboard') {
+        return true
+      }
+
       if (modulo.children) {
         modulo.children = modulo.children.filter((departamento) => {
           if (departamento.children) {
             departamento.children = departamento.children.filter((children) => {
               return tickedSeleccionados.value.includes(children.name)
             })
+            return departamento.children.length > 0
+          } else {
+            return tickedSeleccionados.value.includes(departamento.name)
           }
-          return departamento.children.length > 0
         })
         return modulo.children.length > 0
       } else {
-        return modulo
+        return tickedSeleccionados.value.includes(modulo.name)
       }
     })
 

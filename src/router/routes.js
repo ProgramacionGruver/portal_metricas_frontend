@@ -12,6 +12,7 @@ const routes = [
     children: [
       { path: '', icono: 'dashboard', label: 'Inicio', name: 'dashboard', component: () => import('src/modules/dashboard/DashBoard.vue') },
       { path: 'panelControl', icono: 'admin_panel_settings', label: 'Panel de control', name: 'panelControl', component: () => import('src/modules/control/PanelControlModule.vue') },
+      { path: 'logAccesos', icono: 'history', label: 'Log de accesos', name: 'logAccesosMetricas', component: () => import('src/modules/logs/LogsAccesos.vue') },
       {
         path: 'chevrolet',
         label: 'Chevrolet',

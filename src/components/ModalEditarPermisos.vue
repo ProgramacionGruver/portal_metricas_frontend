@@ -61,16 +61,7 @@
           justify-content: center;
         "
       >
-        <div class="text-h5">
-          ¿Desea otorgarle permiso al usuario para el panel de control?
-        </div>
-        <q-toggle
-          v-model="permisoPanelControl"
-          :label="permisoPanelControl ? 'Sí' : 'No'"
-          color="green"
-          class="q-mb-md"
-        />
-        <div class="text-h5">Métricas del portal</div>
+        <div class="text-h5">Módulos y métricas del portal</div>
         <q-tree
           class="col-12 col-sm-6"
           :nodes="checksPermisos"
@@ -160,7 +151,6 @@ export default {
             };
           }
         })
-        .filter((modulo) => modulo.children);
 
       modalPermisos.value = true;
     };

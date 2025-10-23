@@ -105,13 +105,13 @@ export default {
     onMounted(async () => {
       await obtenerAccessToken(1);
       await obtenerAccessToken(2);
-      await obtenerUsuariosModulo();
+      // await obtenerUsuariosModulo();
       validarRuta(moduloActual.value);
     });
 
     const calcularURLFoto = (numeroEmpleado) => {
       const idFormateado = String(numeroEmpleado).padStart(7, "0");
-      const url = `https://www.gruver.com.mx/fotos/${idFormateado}.jpg`;
+      const url = `https://backend.gruver.com.mx/rh/api/fotos/${idFormateado}.jpg`;
       return url;
     };
 

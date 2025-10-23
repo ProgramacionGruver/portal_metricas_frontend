@@ -12,6 +12,21 @@ export const useModulosStore = defineStore('modulos', () => {
   const tickedSeleccionados = ref([])
   const permisoPanelControl = ref(false)
 
+  const permisosSucursales = ref([])
+  const clavesPermisosSucursales = ref([])
+
+  const accesos = ref([])
+  const accesosFiltrados = ref([])
+
+  const paginacionAccesos = ref({
+    page: 1,
+    rowsPerPage: 11,
+    rowsNumber: 0,
+    pagesNumber: 0
+  })
+
+  const cargandoAccesos = ref(false)
+
   const obtenerUsuariosModulo = async () => {
     try {
       const { data } = await apiUsuarios.get('/metrica/permiso')
@@ -65,6 +80,38 @@ export const useModulosStore = defineStore('modulos', () => {
     }
   }
 
+  const obtenerAccesosPortal = async (filtros, idPortal) => {
+    try {
+      const { page, rowsPerPage } = paginacionAccesos.value
+
+      cargandoAccesos.value = true
+      const { data } = await apiUsuarios.post(`/accesos/portal/${idPortal}`, {
+        page,
+        rowsPerPage,
+        filtros
+      })
+
+      accesos.value = data.accesos
+      accesosFiltrados.value = data.accesos
+      paginacionAccesos.value.pagesNumber = data.totalPages
+      paginacionAccesos.value.rowsNumber = data.total
+    } catch (error) {
+      console.log(error)
+    } finally {
+      cargandoAccesos.value = false
+    }
+  }
+
+  const obtenerPermisosSucursalesByUser = async (idUsuario) => {
+    try {
+      const { data } = await apiUsuarios.post('/permisos/sucursales/justificantes', { idUsuario })
+      permisosSucursales.value = [...data]
+      clavesPermisosSucursales.value = permisosSucursales.value.map(permiso => { return permiso.claveSucursal })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return {
     // state
     usuariosModulos,
@@ -73,11 +120,18 @@ export const useModulosStore = defineStore('modulos', () => {
     listaModulos,
     tickedSeleccionados,
     permisoPanelControl,
-
+    accesos,
+    accesosFiltrados,
+    paginacionAccesos,
+    cargandoAccesos,
+    permisosSucursales,
+    clavesPermisosSucursales,
     // methods
     obtenerUsuariosModulo,
     obtenerPermisosByUsuario,
     actualizarPermisos,
-    solicitarAcceso
+    solicitarAcceso,
+    obtenerAccesosPortal,
+    obtenerPermisosSucursalesByUser
   }
 })
