@@ -26,7 +26,7 @@ export const filtrarOpciones = (tipoFiltro,
       break
     case 'OPCIONESSUCURSALES':
       todasSucursalesSeleccionadas.value = false
-      departamentosFiltrados.value = filtrarElementosDuplicados(filtrarElemento(modelSucursalesSeleccionadas.value, departamentos.value, 'abreviacion'), 'claveDepartamento')
+      departamentosFiltrados.value = filtrarElementosDuplicados(filtrarElemento(modelSucursalesSeleccionadas.value, departamentos.value, 'claveSucursal'), 'claveDepartamento')
       modelDepartamentosSeleccionados.value = departamentosFiltrados.value.map(departamento => departamento.claveDepartamento)
       break
     case 'TODOSDEPARTAMENTOS':
