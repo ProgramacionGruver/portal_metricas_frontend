@@ -1,7 +1,8 @@
 export const filtrarOpciones = (tipoFiltro,
   listaClavesEmpresas, todasEmpresasSeleccionadas, modelEmpresasSeleccionadas,
   sucursales, sucursalesFiltradas, listaClavesSucursales, todasSucursalesSeleccionadas, modelSucursalesSeleccionadas,
-  departamentos, departamentosFiltrados, listaClavesDepartamentos, todosDepartamentosSeleccionados, modelDepartamentosSeleccionados, todosFotosSeleccionados, fotosSeleccionados, todosNuevosIngresosConfirmados, confirmadosSeleccionados
+  departamentos, departamentosFiltrados, listaClavesDepartamentos, todosDepartamentosSeleccionados, modelDepartamentosSeleccionados,
+  todosPuesto, puestosSeleccionados
 ) => {
   switch (tipoFiltro) {
     case 'TODASEMPRESAS':
@@ -49,6 +50,13 @@ export const filtrarOpciones = (tipoFiltro,
       break
     case 'OPCIONESCONFIRMADOS':
       todosNuevosIngresosConfirmados.value = false
+      break
+    case 'TODOSPUESTOS':
+      todosPuesto.value = true
+      puestosSeleccionados.value = []
+      break
+    case 'OPCIONESPUESTOS':
+      todosPuesto.value = false
       break
   }
 }

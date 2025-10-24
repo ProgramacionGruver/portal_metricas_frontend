@@ -4,9 +4,9 @@
       <h2>Log de últimos accesos al portal</h2>
     </div>
     <q-separator color="primary" class="q-my-md" inset />
-    <q-table class="sticky-movimiento tabla--paginada" color="primary" :columns="columns"
-      :filter="buscar" row-key="idAcceso" hide-bottom v-bind:pagination="paginacionAccesos" :rows="accesosFiltrados"
-      :loading="cargandoAccesos || accesosFiltrados.length === 0">
+    <q-table class="sticky-movimiento tabla--paginada" color="primary" :columns="columns" :filter="buscar"
+      row-key="idAcceso" hide-bottom v-bind:pagination="paginacionAccesos" :rows="accesosFiltrados"
+      :loading="cargandoAccesos">
       <template v-slot:loading>
         <div style="
             display: flex;
@@ -24,16 +24,16 @@
       <template v-slot:top>
         <div class="fit row q-mb-sm justify-end">
           <q-input color="blue" dense outlined v-model="buscar" placeholder="Buscar" class="col" debounce="400"
-            :disable="cargandoAccesos || accesosFiltrados.length === 0" @update:model-value="filtrar(filtroActual, 1)">
+            :disable="cargandoAccesos" @update:model-value="filtrar(filtroActual, 1)">
             <template v-slot:append>
               <q-icon name="search" />
             </template>
           </q-input>
-          <q-input dense type="date" outlined v-model="fechas.fechaInicio" placeholder="Fecha Inicio" class="col-auto q-ml-sm" debounce="400"
-            :disable="cargandoAccesos || accesosFiltrados.length === 0" @update:model-value="setearFechaFin">
+          <q-input dense type="date" outlined v-model="fechas.fechaInicio" placeholder="Fecha Inicio"
+            class="col-auto q-ml-sm" debounce="400" :disable="cargandoAccesos" @update:model-value="setearFechaFin">
           </q-input>
-          <q-input dense type="date" outlined v-model="fechas.fechaFin" placeholder="Fecha Fin" class="col-auto q-ml-sm" debounce="400"
-            :disable="cargandoAccesos || accesosFiltrados.length === 0" @update:model-value="filtrar(filtroActual, 1)">
+          <q-input dense type="date" outlined v-model="fechas.fechaFin" placeholder="Fecha Fin" class="col-auto q-ml-sm"
+            debounce="400" :disable="cargandoAccesos" @update:model-value="filtrar(filtroActual, 1)">
           </q-input>
         </div>
         <div class="filtros">
@@ -63,6 +63,13 @@
               v-model="modelDepartamentosSeleccionados" @update:model-value="filtrar('OPCIONESDEPARTAMENTOS')"
               type="checkbox" />
           </q-btn-dropdown>
+          <q-btn-dropdown outline class="col" color="grey" label="Puestos" :disable="listaPuestos?.length === 0">
+            <q-checkbox class="q-pa-md" dense :disable="todosPuesto" v-model="todosPuesto" label="Todos"
+              @update:model-value="filtrar('TODOSPUESTOS')" />
+            <q-separator class="q-mx-md bg-gray"></q-separator>
+            <q-option-group class="q-pa-md" dense :options="listaPuestos" v-model="puestosSeleccionados"
+              @update:model-value="filtrar('OPCIONESPUESTOS')" type="checkbox" />
+          </q-btn-dropdown>
         </div>
       </template>
 
@@ -84,7 +91,12 @@
         </q-tr>
       </template>
     </q-table>
-    <div class="control--tabla q-mb-md">
+    <q-card v-if="accesosFiltrados.length === 0 && !cargandoAccesos"
+      class="q-pa-md flex flex-center column tabla--paginada">
+      <q-icon name="dangerous" color="red" size="100px" />
+      <h3>No se encontraron registros de accesos con los filtros seleccionados.</h3>
+    </q-card>
+    <div v-else class="control--tabla q-mb-md">
       <q-btn v-if="paginacionAccesos.page > 1" icon="first_page" color="gray" round dense flat
         :disable="paginacionAccesos.page === 1 || cargandoAccesos" @click="filtrar(filtroActual, 1)" />
 
@@ -97,12 +109,12 @@
         {{ paginacionAccesos?.pagesNumber }}
       </span>
 
-      <q-btn v-if="paginacionAccesos.page < paginacionAccesos.pagesNumber" icon="chevron_right" color="gray"
-        round dense flat :disable="paginacionAccesos.page === paginacionAccesos.pagesNumber || cargandoAccesos"
+      <q-btn v-if="paginacionAccesos.page < paginacionAccesos.pagesNumber" icon="chevron_right" color="gray" round dense
+        flat :disable="paginacionAccesos.page === paginacionAccesos.pagesNumber || cargandoAccesos"
         @click="filtrar(filtroActual, paginacionAccesos.page + 1)" />
 
-      <q-btn v-if="paginacionAccesos.page < paginacionAccesos.pagesNumber" icon="last_page" color="gray" round
-        dense flat :disable="paginacionAccesos.page === paginacionAccesos.pagesNumber || cargandoAccesos"
+      <q-btn v-if="paginacionAccesos.page < paginacionAccesos.pagesNumber" icon="last_page" color="gray" round dense
+        flat :disable="paginacionAccesos.page === paginacionAccesos.pagesNumber || cargandoAccesos"
         @click="filtrar(filtroActual, paginacionAccesos.pagesNumber)" />
     </div>
   </q-layout>
@@ -119,6 +131,7 @@ import { useEmpresasStore } from "src/stores/empresas";
 import { useSucursalesStore } from "src/stores/sucursales";
 import { useDepartamentosStore } from "src/stores/departamentos";
 import { notificacion } from "src/helpers/mensajes";
+import { usePuestosStore } from "src/stores/puestos";
 
 export default {
   setup() {
@@ -157,6 +170,13 @@ export default {
       todosDepartamentosSeleccionados
     } = storeToRefs(useDepartamentos)
     const { obtenerDepartamentos } = useDepartamentos
+
+    const usePuestos = usePuestosStore();
+    const { listaPuestos, listaClavePuestos } = storeToRefs(usePuestos);
+    const { obtenerPuestos } = usePuestos;
+
+    const todosPuesto = ref(true);
+    const puestosSeleccionados = ref([]);
 
     const fechas = ref({
       fechaInicio: null,
@@ -216,6 +236,7 @@ export default {
         await obtenerEmpresass();
         await obtenerSucursales();
         await obtenerDepartamentos();
+        await obtenerPuestos();
       }
 
       await filtrar("TODASEMPRESAS");
@@ -251,7 +272,9 @@ export default {
         departamentosFiltrados,
         listaClavesDepartamentos,
         todosDepartamentosSeleccionados,
-        modelDepartamentosSeleccionados
+        modelDepartamentosSeleccionados,
+        todosPuesto,
+        puestosSeleccionados
       )
 
       const filtrosObj = {
@@ -260,6 +283,7 @@ export default {
         sucursales: modelSucursalesSeleccionadas.value,
         departamentos: modelDepartamentosSeleccionados.value,
         fechas: fechas.value,
+        puestos: puestosSeleccionados.value.map(puesto => puesto.nombrePuesto),
       }
 
       if (pagina) {
@@ -298,6 +322,9 @@ export default {
       modelDepartamentosSeleccionados,
       todosDepartamentosSeleccionados,
       fechas,
+      listaPuestos,
+      todosPuesto,
+      puestosSeleccionados,
       // Methods
       filtrar,
       setearFechaFin,
