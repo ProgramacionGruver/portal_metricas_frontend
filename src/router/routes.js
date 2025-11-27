@@ -136,6 +136,14 @@ const routes = [
             children: [
               { path: 'informeTickets', icono: 'receipt_long', label: 'Informe Tickets', name: 'informeTicketsCIMB', component: () => import('src/modules/mercedes/controlnterno/InformeTickets.vue') },
             ]
+          },
+          {
+            path: 'creyco',
+            label: 'Creyco',
+            name: 'creycoEX',
+            children: [
+              { path: 'informeSolicitudes', icono: 'description', label: 'Informe Solicitudes', name: 'informeSolicitudesCreyco', component: () => import('src/modules/exactor/creyco/InformeSolicitudesCreyco.vue') },
+            ]
           }
         ]
       },
