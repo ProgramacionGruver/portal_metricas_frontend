@@ -25,21 +25,21 @@ const routes = [
             children: [
               { path: 'ventaPresupuesto', icono: 'attach_money', label: 'Venta vs Presupuesto', name: 'ventaPresupuestoCH', component: () => import('src/modules/chevrolet/indicadores/VentaPresupuestoModule.vue') },
               { path: 'productividad', icono: 'work', label: 'Productividad Autos', name: 'productividadCH', component: () => import('src/modules/chevrolet/indicadores/ProductividadAutos.vue') },
-            ]
-          },
-          {
-            path: 'administracion',
-            label: 'Administración',
-            name: 'administracionCH',
-            children: [
-              // { path: 'estadoResultados', icono: 'trending_up', label: 'Estado de Resultados', name: 'estadoResultadosCH', component: () => import('src/modules/chevrolet/administracion/EstadoResultadosModule.vue') },
-              // { path: 'ventasProducto', icono: 'shopping_bag', label: 'Ventas de prodcuto', name: 'ventasProductoCH', component: () => import('src/modules/chevrolet/administracion/VentasProductosModule.vue') },
-              // { path: 'comisiones', icono: 'payments', label: 'Comisiones', name: 'comisionesCH', component: () => import('src/modules/exactor/administracion/ComisionesModule.vue') },
-              // { path: 'bdc', icono: 'work', label: 'BDC', name: 'bdcCH', component: () => import('src/modules/exactor/administracion/BDCModule.vue') },
               { path: 'tableroRitmo', icono: 'table_rows', label: 'Tablero de Ritmo', name: 'tableroRitmoCH', component: () => import('src/modules/exactor/servicio/TableroRitmoModule.vue') },
-              // { path: 'reporteDireccion', ono: 'work', label: 'Reporte de Dirección', name: 'reporteDireccionCH', component: () => import('src/modules/exactor/rh/ReporteDireccionModule.vue') },
             ]
           },
+          // {
+          //   path: 'administracion',
+          //   label: 'Administración',
+          //   name: 'administracionCH',
+          //   children: [
+          //     // { path: 'estadoResultados', icono: 'trending_up', label: 'Estado de Resultados', name: 'estadoResultadosCH', component: () => import('src/modules/chevrolet/administracion/EstadoResultadosModule.vue') },
+          //     // { path: 'ventasProducto', icono: 'shopping_bag', label: 'Ventas de prodcuto', name: 'ventasProductoCH', component: () => import('src/modules/chevrolet/administracion/VentasProductosModule.vue') },
+          //     // { path: 'comisiones', icono: 'payments', label: 'Comisiones', name: 'comisionesCH', component: () => import('src/modules/exactor/administracion/ComisionesModule.vue') },
+          //     // { path: 'bdc', icono: 'work', label: 'BDC', name: 'bdcCH', component: () => import('src/modules/exactor/administracion/BDCModule.vue') },
+          //     // { path: 'reporteDireccion', ono: 'work', label: 'Reporte de Dirección', name: 'reporteDireccionCH', component: () => import('src/modules/exactor/rh/ReporteDireccionModule.vue') },
+          //   ]
+          // },
           {
             path: 'refacciones',
             label: 'Refacciones',
