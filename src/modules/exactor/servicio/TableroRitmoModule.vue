@@ -16,7 +16,7 @@
     </div>
     <q-separator color="primary" class="q-my-md" inset />
     <div class="contenedorMetrica">
-      <div class="superposicionFramePb"></div>
+      <!-- <div class="superposicionFramePb"></div> -->
       <div ref="powerBiContainer" style="height: 90vh;"></div>
     </div>
   </q-layout>
@@ -45,7 +45,7 @@ export default {
       powerbi = new pbi.service.Service(pbi.factories.hpmFactory, pbi.factories.wpmpFactory, pbi.factories.routerFactory)
 
       await obtenerDatosMetrica(4)
-      await obtenerEmbedToken(infoMetricaSeleccionada.value.idGrupoPB, infoMetricaSeleccionada.value.idMetricaPB, 1)
+      await obtenerEmbedToken(infoMetricaSeleccionada.value.idGrupoPB, infoMetricaSeleccionada.value.idMetricaPB, 2)
       configurarEmbedReporte(infoMetricaSeleccionada.value)
     })
 
