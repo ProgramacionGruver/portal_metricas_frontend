@@ -6,77 +6,10 @@
     <q-separator color="primary" class="q-my-md" inset />
     <div class="permisos">
       <div class="permisos__left q-ml-md">
-        <div class="text-h4 q-mb-sm">Lista de modulos</div>
+        <div class="text-h4 q-mb-sm">Lista de módulos</div>
         <q-list>
           <template v-for="(modulo, index) in modulosFiltrados" :key="index">
-            <q-expansion-item
-              v-if="modulo.children"
-              :label="modulo.label"
-              :default-opened="false"
-            >
-              <template v-for="(departamento, index) in modulo.children" :key="index">
-                <q-expansion-item
-                  :label="departamento.label"
-                  :default-opened="false"
-                  class="q-ml-lg"
-                >
-                  <template
-                    v-for="(children, index) in departamento.children"
-                    :key="index"
-                  >
-                    <q-item
-                      clickable
-                      v-ripple
-                      exact
-                      :active="moduloSeleccionado === children.name"
-                      active-class="my-menu-link"
-                      class="q-ml-xl"
-                      @click="seleccionarModulo(children.name)"
-                    >
-                      <q-item-section avatar>
-                        <q-icon :name="children.icono" />
-                      </q-item-section>
-                      <q-item-section
-                        style="
-                          display: grid;
-                          grid-template-columns: 1.5fr 0.5fr;
-                          column-gap: 4rem;
-                        "
-                      >
-                        <div>
-                          <span>{{ children.label }}</span>
-                        </div>
-                        <div style="position: relative">
-                          <q-avatar
-                            v-for="(usuario, index) in usuariosModulos[
-                              children.name
-                            ]?.slice(0, 3)"
-                            :key="index"
-                            size="3rem"
-                            :style="{ position: 'absolute', left: `${index * 1.5}rem` }"
-                          >
-                            <img :src="obtenerURLImage(usuario.numero_empleado)" />
-                          </q-avatar>
-
-                          <q-avatar
-                            v-if="usuariosModulos[children.name]?.length > 3"
-                            size="3rem"
-                            color="primary"
-                            :style="{ position: 'absolute', left: '4.5rem' }"
-                            class="text-white"
-                          >
-                            <span>+{{ usuariosModulos[children.name]?.length - 3 }}</span>
-                          </q-avatar>
-                        </div>
-                      </q-item-section>
-                    </q-item>
-                  </template>
-                </q-expansion-item>
-              </template>
-            </q-expansion-item>
-
             <q-item
-              v-else
               clickable
               v-ripple
               exact
@@ -99,7 +32,10 @@
                 </div>
                 <div style="position: relative">
                   <q-avatar
-                    v-for="(usuario, index) in usuariosModulos[modulo.name]?.slice(0, 3)"
+                    v-for="(usuario, index) in filtrarUsuariosModulo(
+                      modulo.name,
+                      false
+                    )?.slice(0, 3)"
                     :key="index"
                     size="3rem"
                     :style="{ position: 'absolute', left: `${index * 1.5}rem` }"
@@ -108,17 +44,106 @@
                   </q-avatar>
 
                   <q-avatar
-                    v-if="usuariosModulos[modulo.name]?.length > 3"
+                    v-if="filtrarUsuariosModulo(modulo.name, false)?.length > 3"
                     size="3rem"
                     color="primary"
                     :style="{ position: 'absolute', left: '4.5rem' }"
                     class="text-white"
                   >
-                    <span>+{{ usuariosModulos[modulo.name]?.length - 3 }}</span>
+                    <span
+                      >+{{
+                        filtrarUsuariosModulo(modulo.name, false)?.length - 3
+                      }}</span
+                    >
                   </q-avatar>
                 </div>
               </q-item-section>
             </q-item>
+          </template>
+
+          <div class="text-h4 q-mt-md">Lista de métricas</div>
+          <template v-for="(metrica, index) in metricas" :key="index">
+            <q-expansion-item
+              :label="metrica.nombreCorto"
+              :default-opened="false"
+            >
+              <template
+                v-for="(grupo, subIndex) in metrica.grupos"
+                :key="subIndex"
+              >
+                <q-expansion-item
+                  class="q-ml-md"
+                  :label="grupo.nombreGrupo"
+                  :default-opened="false"
+                >
+                  <template
+                    v-for="(metrica, metricaIndex) in grupo.metricas"
+                    :key="metricaIndex"
+                  >
+                    <q-item
+                      clickable
+                      v-ripple
+                      exact
+                      :active="moduloSeleccionado === metrica.idMetrica"
+                      active-class="my-menu-link"
+                      class="q-ml-md"
+                      @click="seleccionarModulo(metrica.idMetrica, true)"
+                    >
+                      <q-item-section avatar>
+                        <q-icon :name="metrica.icono" />
+                      </q-item-section>
+                      <q-item-section
+                        style="
+                          display: grid;
+                          grid-template-columns: 1.5fr 0.5fr;
+                          column-gap: 4rem;
+                        "
+                      >
+                        <div>
+                          <span>{{ metrica.nombreMetrica }}</span>
+                        </div>
+                        <div style="position: relative">
+                          <q-avatar
+                            v-for="(usuario, index) in filtrarUsuariosModulo(
+                              metrica.idMetrica,
+                              true
+                            )?.slice(0, 3)"
+                            :key="index"
+                            size="3rem"
+                            :style="{
+                              position: 'absolute',
+                              left: `${index * 1.5}rem`,
+                            }"
+                          >
+                            <img
+                              :src="obtenerURLImage(usuario.numero_empleado)"
+                            />
+                          </q-avatar>
+
+                          <q-avatar
+                            v-if="
+                              filtrarUsuariosModulo(metrica.idMetrica, true)
+                                ?.length > 3
+                            "
+                            size="3rem"
+                            color="primary"
+                            :style="{ position: 'absolute', left: '4.5rem' }"
+                            class="text-white"
+                          >
+                            <span
+                              >+{{
+                                filtrarUsuariosModulo(metrica.idMetrica, true)
+                                  ?.length - 3
+                              }}</span
+                            >
+                          </q-avatar>
+                        </div>
+                      </q-item-section>
+                    </q-item>
+                  </template>
+                </q-expansion-item>
+              </template>
+            </q-expansion-item>
           </template>
         </q-list>
       </div>
@@ -129,7 +154,7 @@
         </div>
 
         <q-table
-        v-else
+          v-else
           grid
           flat
           bordered
@@ -142,7 +167,12 @@
           :rows-per-page-options="[15]"
         >
           <template v-slot:top-right>
-            <q-input outlined dense v-model="buscarUsuario" label="Buscar usuario">
+            <q-input
+              outlined
+              dense
+              v-model="buscarUsuario"
+              label="Buscar usuario"
+            >
               <template v-slot:append>
                 <q-icon name="search" />
               </template>
@@ -151,7 +181,7 @@
               color="primary"
               label="Editar permisos"
               class="q-ml-md"
-              @click="editarPermisos()"
+              @click="editarPermisos"
             />
           </template>
 
@@ -175,7 +205,13 @@
                   >
                     {{ props.row.nombre }}
                   </p>
-                  <p style="font-size: small; margin-bottom: 0; text-align: center">
+                  <p
+                    style="
+                      font-size: small;
+                      margin-bottom: 0;
+                      text-align: center;
+                    "
+                  >
                     {{ props.row.usuario }}
                   </p>
                 </q-card-section>
@@ -195,6 +231,7 @@ import { useModulosStore } from "src/stores/permisosModulos";
 import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
 import { obtenerURLImage } from "src/helpers/abrirURL.js";
+import { useMetricasStore } from "src/stores/metricas";
 import ModalEditarPermisos from "../../components/ModalEditarPermisos.vue";
 
 export default {
@@ -204,12 +241,17 @@ export default {
   setup() {
     const useModulos = useModulosStore();
     const { obtenerUsuariosModulo } = useModulos;
+    const { usuariosModulos, usuariosAcceso, filtroUsuariosAcceso } =
+      storeToRefs(useModulos);
+
+    const useMetricas = useMetricasStore();
     const {
-      usuariosModulos,
-      usuariosAcceso,
-      filtroUsuariosAcceso,
-      listaModulos,
-    } = storeToRefs(useModulos);
+      obtenerTodasMetricas,
+      obtenerPermisosModulosTodos,
+      obtenerPermisosMetricasTodos,
+    } = useMetricas;
+    const { metricas, usuariosPermisoModulos, usuariosPermisoMetricas } =
+      storeToRefs(useMetricas);
 
     const router = useRouter();
 
@@ -236,27 +278,52 @@ export default {
 
     onMounted(async () => {
       cargando.value = true;
-      listaModulos.value = listaModulos.value.filter(
-        (modulo) => modulo.name !== "dashboard"
-      );
-      modulosFiltrados.value = listaModulos.value;
+      modulosFiltrados.value = router.options.routes
+        .find((route) => route.name === "principal")
+        .children.filter((route) => route.name !== "dashboard");
 
+      if (metricas.value.length === 0) {
+        await obtenerTodasMetricas();
+      }
+
+      await obtenerPermisosModulosTodos();
+      await obtenerPermisosMetricasTodos();
       await obtenerUsuariosModulo();
       cargando.value = false;
     });
 
-    const seleccionarModulo = (modulo) => {
+    const seleccionarModulo = (modulo, esMetricas = false) => {
       if (moduloSeleccionado.value === modulo) {
         moduloSeleccionado.value = "";
-        usuariosAcceso.value = [...filtroUsuariosAcceso.value];
+        usuariosAcceso.value = [...filtroUsuariosAcceso.value.map((usuario) => usuario.value)];
       } else {
         moduloSeleccionado.value = modulo;
-        usuariosAcceso.value = usuariosModulos.value[modulo];
+        if (esMetricas) {
+          usuariosAcceso.value = filtrarUsuariosModulo(modulo, true);
+        } else {
+          usuariosAcceso.value = filtrarUsuariosModulo(modulo, false);
+        }
       }
     };
 
     const editarPermisos = () => {
       modalPermisos.value.abrir();
+    };
+
+    const filtrarUsuariosModulo = (modulo, esMetricas = false) => {
+      if (esMetricas) {
+        return usuariosPermisoMetricas.value.filter((usuario) =>
+          usuario.permisosMetricas?.some(
+            (permiso) => permiso.idMetrica === modulo
+          )
+        );
+      } else {
+        return usuariosPermisoModulos.value.filter((usuario) =>
+          usuario.permisosModulos?.some(
+            (permiso) => permiso.nombreModulo === modulo
+          )
+        );
+      }
     };
 
     return {
@@ -269,10 +336,14 @@ export default {
       buscarUsuario,
       modalPermisos,
       cargando,
+      usuariosPermisoMetricas,
+      usuariosPermisoModulos,
+      metricas,
       // Methods
       obtenerURLImage,
       seleccionarModulo,
       editarPermisos,
+      filtrarUsuariosModulo,
     };
   },
 };

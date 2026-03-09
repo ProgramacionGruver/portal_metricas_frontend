@@ -1,53 +1,25 @@
 <template>
   <q-dialog v-model="abrirModal">
     <q-card class="full-width">
-      <q-card-section
-        class="bg-primary text-white"
-        style="
+      <q-card-section class="bg-primary text-white" style="
           display: flex;
           justify-content: space-between;
           align-items: center;
           margin: 0;
           padding: 0;
-        "
-      >
-        <h4 style="margin-left: 2rem">Solicitar acceso</h4>
-        <q-btn
-          flat
-          round
-          dense
-          v-close-popup
-          class="text-white"
-          icon="close"
-          style="margin-right: 2rem"
-        />
+        ">
+        <h4 class="q-pa-md">Solicitar acceso</h4>
+        <q-btn flat round dense v-close-popup class="text-white" icon="close" style="margin-right: 2rem" />
       </q-card-section>
       <q-card-section>
-        <div class="text-h4">Seleccione las métricas a las que desea acceder:</div>
-        <q-tree
-          class="col-12 col-sm-6 q-mt-md"
-          :nodes="checksPermisos"
-          tick-strategy="leaf"
-          node-key="name"
-          v-model:ticked="tickedSeleccionados"
-        />
+        <div class="text-h5 q-mb-md">Métricas del portal</div>
+        <q-tree class="col-12" :nodes="checksPermisosMetricas" tick-strategy="leaf" node-key="name"
+          v-model:ticked="tickedMetricasSeleccionadas" />
       </q-card-section>
       <q-card-actions align="right">
-        <q-btn
-          flat
-          label="Cancelar"
-          v-close-popup
-          icon-right="close"
-          color="primary"
-        />
-        <q-btn
-          color="primary"
-          label="Solicitar acceso"
-          @click="solicitudAcceso"
-          icon-right="send"
-          :loading="cargando"
-          :disable="tickedSeleccionados.length === 0"
-        >
+        <q-btn flat label="Cancelar" v-close-popup icon-right="close" color="primary" />
+        <q-btn color="primary" label="Solicitar acceso" @click="solicitudAcceso" icon-right="send" :loading="cargando"
+          :disable="tickedMetricasSeleccionadas.length === 0">
           <template v-slot:loading>
             <q-spinner-facebook color="white" />
           </template>
@@ -59,7 +31,7 @@
 
 <script>
 import { ref } from 'vue';
-import { useModulosStore } from 'src/stores/permisosModulos';
+import { useMetricasStore } from 'src/stores/metricas';
 import { storeToRefs } from 'pinia';
 import { useAutenticacionStore } from 'src/stores/autenticaciones';
 import { notificacion } from 'src/helpers/mensajes';
@@ -69,45 +41,50 @@ export default {
     const useAutenticaciones = useAutenticacionStore();
     const { usuarioAutenticado } = storeToRefs(useAutenticaciones);
 
-    const useModulos = useModulosStore();
-    const { solicitarAcceso } = useModulos;
-    const { listaModulos } = storeToRefs(useModulos);
+    const useMetricas = useMetricasStore();
+    const { solicitarAccesoMetricas } = useMetricas;
+    const { metricas, permisosMetricas } = storeToRefs(useMetricas);
 
     const abrirModal = ref(false);
 
-    const checksPermisos = ref([]);
-    const tickedSeleccionados = ref([]);
+    const checksPermisosMetricas = ref([]);
+    const tickedMetricasSeleccionadas = ref([]);
 
     const cargando = ref(false);
 
     const abrir = () => {
-      checksPermisos.value = listaModulos.value
-        .map((modulo) => {
-          if (modulo.children) {
+      // Construir el formato correcto para tickedMetricasSeleccionadas
+      tickedMetricasSeleccionadas.value = permisosMetricas.value.map(permiso => {
+        let resultado = null;
+        metricas.value.forEach(empresa => {
+          empresa.grupos.forEach(grupo => {
+            const metrica = grupo.metricas.find(m => m.idMetrica === permiso.idMetrica);
+            if (metrica) {
+              resultado = `metrica-${metrica.idMetrica}-${grupo.idGrupo}-${empresa.claveEmpresa}`;
+            }
+          });
+        });
+        return resultado;
+      }).filter(Boolean);
+
+      checksPermisosMetricas.value = metricas.value.map((empresa) => {
+        return {
+          label: empresa.nombreCorto,
+          name: `empresa-${empresa.claveEmpresa}`,
+          children: empresa.grupos.map((grupo) => {
             return {
-              label: modulo.label,
-              name: modulo.name,
-              children: modulo.children.map((departamento) => {
+              label: grupo.nombreGrupo,
+              name: `grupo-${grupo.idGrupo}-${empresa.claveEmpresa}`,
+              children: grupo.metricas.map((metrica) => {
                 return {
-                  label: departamento.label,
-                  name: departamento.name,
-                  children: departamento.children.map((modulo) => {
-                    return {
-                      label: modulo.label,
-                      name: modulo.name,
-                    };
-                  }),
+                  label: metrica.nombreMetrica,
+                  name: `metrica-${metrica.idMetrica}-${grupo.idGrupo}-${empresa.claveEmpresa}`,
                 };
               }),
             };
-          } else {
-            return {
-              label: modulo.label,
-              name: modulo.name,
-            };
-          }
-        })
-        .filter((modulo) => modulo.children);
+          }),
+        };
+      });
 
       abrirModal.value = true;
     }
@@ -115,16 +92,13 @@ export default {
     const solicitudAcceso = async () => {
       cargando.value = true;
 
-      const solicitud = {
-        solicitante: usuarioAutenticado.value,
-        metricas: tickedSeleccionados.value
-      }
+      const permisosMetricas = tickedMetricasSeleccionadas.value.map(metrica => {
+        return Number(metrica.split("-")[1]);
+      })
 
-      notificacion('warning', 'Espere a que se cierre este automaticamente este modal, puede tardar unos segundos...')
+      await solicitarAccesoMetricas(usuarioAutenticado.value.numero_empleado, permisosMetricas);
 
-      await solicitarAcceso(solicitud);
-
-      tickedSeleccionados.value = [];
+      tickedMetricasSeleccionadas.value = [];
       cargando.value = false;
       abrirModal.value = false;
     }
@@ -132,8 +106,8 @@ export default {
     return {
       // States
       abrirModal,
-      checksPermisos,
-      tickedSeleccionados,
+      checksPermisosMetricas,
+      tickedMetricasSeleccionadas,
       cargando,
       // Methods
       abrir,

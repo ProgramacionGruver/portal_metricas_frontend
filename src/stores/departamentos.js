@@ -29,12 +29,14 @@ export const useDepartamentosStore = defineStore('departamentos', () => {
   }
 
   return {
+    // State
     departamentos,
     departamentosFiltrados,
     modelDepartamentosSeleccionados,
     todosDepartamentosSeleccionados,
     opcionesDepartamentos,
     listaClavesDepartamentos,
+    // Methods
     obtenerDepartamentos
   }
 })

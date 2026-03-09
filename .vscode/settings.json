@@ -6,8 +6,10 @@
   "editor.codeActionsOnSave": ["source.fixAll.eslint"],
   "eslint.validate": ["javascript", "javascriptreact", "typescript", "vue"],
   "workbench.colorCustomizations": {
-    "activityBar.background": "#510C56",
-    "titleBar.activeBackground": "#711179",
-    "titleBar.activeForeground": "#FEFCFF"
+    "statusBar.foreground": "#F9FBF9",
+    "statusBar.debuggingBackground": "#1F321F",
+    "statusBar.debuggingForeground": "#F9FBF9",
+    "statusBar.noFolderBackground": "#1F321F",
+    "statusBar.noFolderForeground": "#F9FBF9"
   }
 }

@@ -77,7 +77,6 @@ import { useAutenticacionStore } from '../stores/autenticaciones'
 import { ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { ID_PORTAL } from 'src/constant/servidor'
-import { storeToRefs } from 'pinia'
 
 export default {
   setup () {

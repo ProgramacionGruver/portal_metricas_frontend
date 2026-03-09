@@ -1,26 +1,25 @@
-.contenedor-dashboard{
+.contenedor-dashboard {
   padding: 4rem;
 
-  .contenedor-banner-fecha{
+  .contenedor-banner-fecha {
     display: grid;
 
     @include adaptar(768px) {
-       grid-template-columns: 65% 35%;
+      grid-template-columns: 65% 35%;
     }
 
     .card-banner {
-      background-color: #1052A0;
+      background-color: #1052a0;
     }
 
-    .contenedor-date{
+    .contenedor-date {
       padding-left: 3rem;
       display: flex;
       justify-content: center;
     }
-
   }
 
-  .contenedor-requisicones-ingresos{
+  .contenedor-requisicones-ingresos {
     display: grid;
 
     @include adaptar(768px) {
@@ -28,63 +27,61 @@
       padding-top: 3rem;
     }
 
-    .contenedor-resumen-requisiciones{
+    .contenedor-resumen-requisiciones {
       display: flex;
       flex-direction: column;
 
-      .card-resumen{
+      .card-resumen {
         display: grid;
         gap: 3rem;
         @include adaptar(768px) {
           grid-template-columns: repeat(2, 1fr);
           padding-bottom: 3rem;
-
         }
       }
     }
 
-    .card-ingresos{
+    .card-ingresos {
       padding-left: 3rem;
     }
   }
-
 }
 
 .avatar {
   background-color: $primary;
   font-size: 4rem;
 }
+
 .cards-dashboard {
-    display: grid;
-    gap: 1.5rem;
-    @include adaptar(768px) {
-       grid-template-columns: repeat( 3,1fr );
+  display: grid;
+  gap: 1.5rem;
+  @include adaptar(768px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 
+  .contenido-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    h3 {
+      text-align: center;
     }
-
-    .contenido-card {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-
-      h3 {
-        text-align: center;
-      }
-      span {
-        font-size: 4rem;
-      }
-      p {
-        font-size: 2.5rem;
-      }
+    span {
+      font-size: 4rem;
     }
+    p {
+      font-size: 2.5rem;
+    }
+  }
 }
 
 .cards-historial {
   display: grid;
   gap: 1.5rem;
   @include adaptar(768px) {
-     grid-template-columns: repeat( 2,1fr );
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .contenido-card {
@@ -110,7 +107,7 @@
   margin-top: 5rem;
   gap: 35rem;
   @include adaptar(768px) {
-     grid-template-columns: repeat( 2,1fr );
+    grid-template-columns: repeat(2, 1fr);
   }
   .contenido-card {
     display: flex;
@@ -126,6 +123,48 @@
     }
     p {
       font-size: 2.5rem;
+    }
+  }
+}
+
+.contenedor-dashboard {
+  width: 100%;
+  height: calc(100vh - 50px);
+  padding: 2rem;
+
+  .contenedor-banner-fecha {
+    width: 100%;
+    height: 40vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5rem;
+
+    .card-banner {
+      width: 70%;
+      height: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2rem;
+      background: linear-gradient(
+        90deg,
+        var(--q-primary) 0%,
+        var(--q-secondary) 75%
+      );
+    }
+
+    .card-calendar {
+      height: 100%;
+      width: 30%;
+
+      .q-date__header {
+        background: linear-gradient(
+          90deg,
+          var(--q-secondary) 0%,
+          var(--q-primary) 75%
+        );
+      }
     }
   }
 }

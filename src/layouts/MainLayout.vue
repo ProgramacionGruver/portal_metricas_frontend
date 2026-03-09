@@ -1,8 +1,25 @@
 <template>
-  <q-layout view="hHh LpR fFf">
+  <div v-if="estaActualizado" class="fit row justify-center items-center bg-grey-4" style="width: 100vw !important; height: 100vh !important">
+    <PanelActualizacion />
+  </div>
+  <div
+    v-else-if="cargando"
+    class="fit column justify-center items-center"
+    style="width: 100%; height: 100vh !important"
+  >
+    <q-spinner-ios size="200px" color="primary" />
+    <div class="text-h2 q-mt-xl q-mr-md q-ml-md text-center cargando--animado">
+      Obteniendo la información del portal, espere un momento
+    </div>
+  </div>
+  <q-layout v-else view="hHh LpR fFf">
     <q-header elevated class="bg-primary text-white">
       <q-toolbar>
         <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
+
+        <q-avatar class="bg-white q-ml-sm">
+          <img src="../img/logog.png" class="q-pa-xs" />
+        </q-avatar>
 
         <q-toolbar-title> Portal Métricas </q-toolbar-title>
 
@@ -34,7 +51,6 @@
       bordered
       :width="270"
     >
-      <!-- drawer content -->
       <div class="contenedor-perfil">
         <div
           style="background-color: rgba(0, 0, 0, 0.5)"
@@ -67,17 +83,19 @@
 import { onMounted, ref, watch } from "vue";
 import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
-import NavBar from "src/components/NavBar.vue";
-import ModalSolicitarAcceso from "src/components/ModalSolicitarAcceso.vue";
 import { useAutenticacionStore } from "src/stores/autenticaciones";
 import { usePowerBiStore } from "src/stores/powerbi";
-import { useModulosStore } from "src/stores/permisosModulos";
-import { ID_PORTAL } from "src/constant/servidor";
+import { useMetricasStore } from "src/stores/metricas";
+import NavBar from "src/components/NavBar.vue";
+import ModalSolicitarAcceso from "src/components/ModalSolicitarAcceso.vue";
+import { useActualizacionesStore } from "src/stores/actualizaciones";
+import PanelActualizacion from "src/components/PanelActualizacion.vue";
 
 export default {
   components: {
     NavBar,
     ModalSolicitarAcceso,
+    PanelActualizacion,
   },
   setup() {
     const useUsuario = useAutenticacionStore();
@@ -87,14 +105,20 @@ export default {
     const usePowerBi = usePowerBiStore();
     const { obtenerAccessToken } = usePowerBi;
 
-    const useModulos = useModulosStore();
-    const { obtenerUsuariosModulo } = useModulos;
+    const useMetricas = useMetricasStore();
+    const { metricas, permisosModulos, permisosMetricas } = storeToRefs(useMetricas);
+    const { obtenerTodasMetricas, obtenerPermisosModulosByNumeroEmpleado, obtenerPermisosMetricasByNumeroEmpleado } = useMetricas;
+
+    const useActualzaciones = useActualizacionesStore();
+    const { estaActualizado } = storeToRefs(useActualzaciones);
+    const { validarActualizacionPortal, marcarUsuarioActualizado } = useActualzaciones;
 
     const leftDrawerOpen = ref(false);
     const router = useRouter();
 
     const modalSolicitarAcceso = ref(null);
 
+    const cargando = ref(false);
     const mostrar = ref(true);
     const moduloActual = ref(router.currentRoute.value.name);
 
@@ -102,11 +126,35 @@ export default {
       router.push("/");
       cerrarSesion();
     };
+
     onMounted(async () => {
+      const actualizacionData = {
+        fecha: new Date().toISOString().split("T")[0], // Solo la fecha en formato YYYY-MM-DD
+        numeroEmpleado: usuarioAutenticado.value.numero_empleado,
+      }
+
+      await validarActualizacionPortal(actualizacionData);
+      await marcarUsuarioActualizado(actualizacionData);
+
+      cargando.value = true;
+
+      if (metricas.value.length === 0) {
+        await obtenerTodasMetricas();
+      }
+
+      if (permisosModulos.value.length === 0) {
+        await obtenerPermisosModulosByNumeroEmpleado(usuarioAutenticado.value.numero_empleado);
+      }
+
+      if (permisosMetricas.value.length === 0) {
+        await obtenerPermisosMetricasByNumeroEmpleado(usuarioAutenticado.value.numero_empleado);
+      }
+
       await obtenerAccessToken(1);
       await obtenerAccessToken(2);
-      // await obtenerUsuariosModulo();
       validarRuta(moduloActual.value);
+
+      cargando.value = false;
     });
 
     const calcularURLFoto = (numeroEmpleado) => {
@@ -135,10 +183,14 @@ export default {
     );
 
     return {
+      // States
       usuarioAutenticado,
       leftDrawerOpen,
       modalSolicitarAcceso,
       mostrar,
+      cargando,
+      estaActualizado,
+      // Methods
       logout,
       toggleLeftDrawer() {
         leftDrawerOpen.value = !leftDrawerOpen.value;
